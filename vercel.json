@@ -6,6 +6,11 @@
             "use": "@vercel/node"
         }
     ],
+    "build": {
+        "env": {
+            "NODE_OPTIONS": "--require tsconfig-paths/register"
+        }
+    },
     "routes": [
         {
             "src": "/(.*)",
