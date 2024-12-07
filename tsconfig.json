@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./", // The base directory for non-relative module names
     "paths": {
-      "@/*": ["src/*"] // Map '@/' to the 'src/' folder
+      "@/*": ["./src/*"] // Map '@/' to the 'src/' folder
     },
     "incremental": true,
     "skipLibCheck": true,
