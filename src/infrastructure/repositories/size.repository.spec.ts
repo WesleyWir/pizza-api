@@ -37,17 +37,18 @@ describe('DatabaseSizeRepository', () => {
   });
 
   it('should create a size', async () => {
+    const newDate = new Date();
     const mockSize = new SizeModel();
     mockSize.id = 1;
     mockSize.name = 'Large';
     mockSize.price = 100;
-    mockSize.createdAt = new Date();
+    mockSize.createdAt = newDate;
 
     const sizeEntity = new Size();
     sizeEntity.id = 1;
     sizeEntity.name = 'Large';
     sizeEntity.price = 100;
-    sizeEntity.createdAt = new Date();
+    sizeEntity.createdAt = newDate;
 
     const insertResult: InsertResult = {
       generatedMaps: [sizeEntity],

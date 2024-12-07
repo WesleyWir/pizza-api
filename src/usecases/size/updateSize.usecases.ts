@@ -1,4 +1,4 @@
-import { SizeModel } from '@/domain/models/size';
+import { SizeModel } from '../../domain/models/size';
 import { ILogger } from '../../domain/logger/logger.interface';
 import { SizeRepository } from '../../domain/repositories/SizeRepository.interface';
 

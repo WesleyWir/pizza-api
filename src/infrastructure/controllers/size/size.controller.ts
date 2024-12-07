@@ -3,7 +3,7 @@ import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query }
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from '../../usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from '../../usecases-proxy/usecases-proxy.module';
-import { GetSizeUseCases } from '../../../usecases/size/getSize.usecases';
+import { getSizeUseCases } from '../../../usecases/size/getSize.usecases';
 import { SizePresenter } from './size.presenter';
 import { ApiResponseType } from '../../common/swagger/response.decorator';
 import { getSizesUseCases } from '../../../usecases/size/getSizes.usecases';
@@ -19,7 +19,7 @@ import { createSizeUseCases } from '../../../usecases/size/createSize.usecases';
 export class SizeController {
   constructor(
     @Inject(UsecasesProxyModule.GET_SIZE_USECASES_PROXY)
-    private readonly getSizeUsecaseProxy: UseCaseProxy<GetSizeUseCases>,
+    private readonly getSizeUsecaseProxy: UseCaseProxy<getSizeUseCases>,
     @Inject(UsecasesProxyModule.GET_SIZES_USECASES_PROXY)
     private readonly getAllSizeUsecaseProxy: UseCaseProxy<getSizesUseCases>,
     @Inject(UsecasesProxyModule.PUT_SIZE_USECASES_PROXY)
