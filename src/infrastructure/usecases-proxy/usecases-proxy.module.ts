@@ -17,16 +17,16 @@ import { updateFlavorUseCases } from '../../usecases/flavor/updateFlavor.usecase
 import { deleteFlavorUseCases } from '../../usecases/flavor/deleteFlavor.usecases';
 import { getFlavorUseCases } from '../../usecases/flavor/getFlavor.usecases';
 import { DatabaseAdditionalRepository } from '../repositories/additional.repository';
-import { getAdditionalsUseCases } from '@/usecases/additional/getAdditionals.usecases';
-import { createAdditionalUseCases } from '@/usecases/additional/createAdditional.usecases';
-import { updateAdditionalUseCases } from '@/usecases/additional/updateAdditional.usecases';
-import { deleteAdditionalUseCases } from '@/usecases/additional/deleteAdditional.usecases';
-import { getAdditionalUseCases } from '@/usecases/additional/getAdditional.usecases';
+import { getAdditionalsUseCases } from '../../usecases/additional/getAdditionals.usecases';
+import { createAdditionalUseCases } from '../../usecases/additional/createAdditional.usecases';
+import { updateAdditionalUseCases } from '../../usecases/additional/updateAdditional.usecases';
+import { deleteAdditionalUseCases } from '../../usecases/additional/deleteAdditional.usecases';
+import { getAdditionalUseCases } from '../../usecases/additional/getAdditional.usecases';
 import { DatabaseOrderRepository } from '../repositories/order.repository';
-import { deleteOrderUseCases } from '@/usecases/order/deleteOrder.usecases';
-import { storeOrderUseCases } from '@/usecases/order/storeOrder.usecases';
+import { deleteOrderUseCases } from '../../usecases/order/deleteOrder.usecases';
+import { storeOrderUseCases } from '../../usecases/order/storeOrder.usecases';
 import { DatabasePizzaRepository } from '../repositories/pizza.repository';
-import { getOrderUseCases } from '@/usecases/order/getOrder.usecases';
+import { getOrderUseCases } from '../../usecases/order/getOrder.usecases';
 
 @Module({
     imports: [LoggerModule, RepositoriesModule, ExceptionsModule],

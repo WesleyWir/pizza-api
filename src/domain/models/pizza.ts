@@ -1,4 +1,4 @@
-import { Additional } from "@/infrastructure/entities/additional.entity";
+import { Additional } from "../../infrastructure/entities/additional.entity";
 import { FlavorModel } from "./flavor";
 import { SizeModel } from "./size";
 

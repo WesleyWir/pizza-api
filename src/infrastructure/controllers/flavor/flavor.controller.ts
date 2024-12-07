@@ -1,16 +1,16 @@
 
 import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UseCaseProxy } from '@/infrastructure/usecases-proxy/usecases-proxy';
-import { UsecasesProxyModule } from '@/infrastructure/usecases-proxy/usecases-proxy.module';
-import { getFlavorUseCases } from '@/usecases/flavor/getFlavor.usecases';
+import { UseCaseProxy } from '../../../infrastructure/usecases-proxy/usecases-proxy';
+import { UsecasesProxyModule } from '../../../infrastructure/usecases-proxy/usecases-proxy.module';
+import { getFlavorUseCases } from '../../../usecases/flavor/getFlavor.usecases';
 import { FlavorPresenter } from './flavor.presenter';
-import { ApiResponseType } from '@/infrastructure/common/swagger/response.decorator';
-import { getFlavorsUseCases } from '@/usecases/flavor/getFlavors.usecases';
-import { updateFlavorUseCases } from '@/usecases/flavor/updateFlavor.usecases';
+import { ApiResponseType } from '../../../infrastructure/common/swagger/response.decorator';
+import { getFlavorsUseCases } from '../../../usecases/flavor/getFlavors.usecases';
+import { updateFlavorUseCases } from '../../../usecases/flavor/updateFlavor.usecases';
 import { CreateFlavorDto, UpdateFlavorDto } from './flavor.dto';
-import { deleteFlavorUseCases } from '@/usecases/flavor/deleteFlavor.usecases';
-import { createFlavorUseCases } from '@/usecases/flavor/createFlavor.usecases';
+import { deleteFlavorUseCases } from '../../../usecases/flavor/deleteFlavor.usecases';
+import { createFlavorUseCases } from '../../../usecases/flavor/createFlavor.usecases';
 
 @Controller('flavors')
 @ApiTags('flavors')

@@ -1,10 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { FlavorModel } from '@/domain/models/flavor';
-import { FlavorPresenter } from '../flavor/flavor.presenter';
-import { SizePresenter } from '../size/size.presenter';
-import { AdditionalPresenter } from '../additional/additional.presenter';
-import { SizeModel } from '@/domain/models/size';
-import { AdditionalModel } from '@/domain/models/additional';
+import { FlavorModel } from '../../../domain/models/flavor';
+import { SizeModel } from '../../../domain/models/size';
+import { AdditionalModel } from '../../../domain/models/additional';
 
 export class Menu {
     flavors: FlavorModel[];

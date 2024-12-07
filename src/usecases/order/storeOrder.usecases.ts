@@ -1,11 +1,11 @@
-import { PizzaModel } from '@/domain/models/pizza';
+import { PizzaModel } from '../../domain/models/pizza';
 import { ILogger } from '../../domain/logger/logger.interface';
 import { OrderModel } from '../../domain/models/order';
 import { OrderRepository } from '../../domain/repositories/OrderRepository.interface';
-import { PizzaRepository } from '@/domain/repositories/PizzaRepository.interface';
-import { SizeRepository } from '@/domain/repositories/SizeRepository.interface';
-import { FlavorRepository } from '@/domain/repositories/FlavorRepository.interface';
-import { AdditionalRepository } from '@/domain/repositories/AdditionalRepository.interface';
+import { PizzaRepository } from '../../domain/repositories/PizzaRepository.interface';
+import { SizeRepository } from '../../domain/repositories/SizeRepository.interface';
+import { FlavorRepository } from '../../domain/repositories/FlavorRepository.interface';
+import { AdditionalRepository } from '../../domain/repositories/AdditionalRepository.interface';
 
 export class storeOrderUseCases {
     constructor(

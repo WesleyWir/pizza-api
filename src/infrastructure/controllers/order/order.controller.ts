@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Inject, Post, Query } from "@nestjs/common";
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { OrderPresenter } from "./order.presenter";
-import { ApiResponseType } from "@/infrastructure/common/swagger/response.decorator";
-import { UsecasesProxyModule } from "@/infrastructure/usecases-proxy/usecases-proxy.module";
-import { UseCaseProxy } from "@/infrastructure/usecases-proxy/usecases-proxy";
-import { storeOrderUseCases } from "@/usecases/order/storeOrder.usecases";
-import { getOrderUseCases } from "@/usecases/order/getOrder.usecases";
-import { deleteOrderUseCases } from "@/usecases/order/deleteOrder.usecases";
+import { ApiResponseType } from "../../../infrastructure/common/swagger/response.decorator";
+import { UsecasesProxyModule } from "../../../infrastructure/usecases-proxy/usecases-proxy.module";
+import { UseCaseProxy } from "../../../infrastructure/usecases-proxy/usecases-proxy";
+import { storeOrderUseCases } from "../../../usecases/order/storeOrder.usecases";
+import { getOrderUseCases } from "../../../usecases/order/getOrder.usecases";
+import { deleteOrderUseCases } from "../../../usecases/order/deleteOrder.usecases";
 import { StoreOrderDto } from "./order.dto";
 
 @Controller('orders')

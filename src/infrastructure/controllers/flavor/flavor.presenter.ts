@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { FlavorModel } from '@/domain/models/flavor';
+import { FlavorModel } from '../../../domain/models/flavor';
 
 export class FlavorPresenter {
   @ApiProperty()

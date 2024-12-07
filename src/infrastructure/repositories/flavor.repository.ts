@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { FlavorModel } from '../../domain/models/flavor';
 import { Flavor } from '../entities/flavor.entity';
-import { FlavorRepository } from '@/domain/repositories/FlavorRepository.interface';
+import { FlavorRepository } from '../../domain/repositories/FlavorRepository.interface';
 
 @Injectable()
 export class DatabaseFlavorRepository implements FlavorRepository {

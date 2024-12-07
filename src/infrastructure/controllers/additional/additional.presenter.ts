@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AdditionalModel } from '@/domain/models/additional';
+import { AdditionalModel } from '../../../domain/models/additional';
 
 export class AdditionalPresenter {
   @ApiProperty()

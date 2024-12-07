@@ -1,16 +1,16 @@
 
 import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UseCaseProxy } from '@/infrastructure/usecases-proxy/usecases-proxy';
-import { UsecasesProxyModule } from '@/infrastructure/usecases-proxy/usecases-proxy.module';
-import { getAdditionalUseCases } from '@/usecases/additional/getAdditional.usecases';
+import { UseCaseProxy } from '../../../infrastructure/usecases-proxy/usecases-proxy';
+import { UsecasesProxyModule } from '../../../infrastructure/usecases-proxy/usecases-proxy.module';
+import { getAdditionalUseCases } from '../../../usecases/additional/getAdditional.usecases';
 import { AdditionalPresenter } from './additional.presenter';
-import { ApiResponseType } from '@/infrastructure/common/swagger/response.decorator';
-import { getAdditionalsUseCases } from '@/usecases/additional/getAdditionals.usecases';
-import { updateAdditionalUseCases } from '@/usecases/additional/updateAdditional.usecases';
+import { ApiResponseType } from '../../../infrastructure/common/swagger/response.decorator';
+import { getAdditionalsUseCases } from '../../../usecases/additional/getAdditionals.usecases';
+import { updateAdditionalUseCases } from '../../../usecases/additional/updateAdditional.usecases';
 import { CreateAdditionalDto, UpdateAdditionalDto } from './additional.dto';
-import { deleteAdditionalUseCases } from '@/usecases/additional/deleteAdditional.usecases';
-import { createAdditionalUseCases } from '@/usecases/additional/createAdditional.usecases';
+import { deleteAdditionalUseCases } from '../../../usecases/additional/deleteAdditional.usecases';
+import { createAdditionalUseCases } from '../../../usecases/additional/createAdditional.usecases';
 
 @Controller('additionals')
 @ApiTags('additionals')

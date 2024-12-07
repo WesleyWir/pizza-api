@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AdditionalModel } from '../../domain/models/additional';
 import { Additional } from '../entities/additional.entity';
-import { AdditionalRepository } from '@/domain/repositories/AdditionalRepository.interface';
+import { AdditionalRepository } from '../../domain/repositories/AdditionalRepository.interface';
 
 @Injectable()
 export class DatabaseAdditionalRepository implements AdditionalRepository {

@@ -1,12 +1,12 @@
 import { Controller, Get, Inject } from "@nestjs/common";
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { MenuPresenter } from "./menu.presenter";
-import { ApiResponseType } from "@/infrastructure/common/swagger/response.decorator";
-import { UsecasesProxyModule } from "@/infrastructure/usecases-proxy/usecases-proxy.module";
-import { UseCaseProxy } from "@/infrastructure/usecases-proxy/usecases-proxy";
-import { getAdditionalsUseCases } from "@/usecases/additional/getAdditionals.usecases";
-import { getFlavorsUseCases } from "@/usecases/flavor/getFlavors.usecases";
-import { getSizesUseCases } from "@/usecases/size/getSizes.usecases";
+import { ApiResponseType } from "../../../infrastructure/common/swagger/response.decorator";
+import { UsecasesProxyModule } from "../../../infrastructure/usecases-proxy/usecases-proxy.module";
+import { UseCaseProxy } from "../../../infrastructure/usecases-proxy/usecases-proxy";
+import { getAdditionalsUseCases } from "../../../usecases/additional/getAdditionals.usecases";
+import { getFlavorsUseCases } from "../../../usecases/flavor/getFlavors.usecases";
+import { getSizesUseCases } from "../../../usecases/size/getSizes.usecases";
 
 @Controller('menu')
 @ApiTags('menu')

@@ -1,4 +1,4 @@
-import { PizzaModel } from '@/domain/models/pizza';
+import { PizzaModel } from '../../../domain/models/pizza';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 

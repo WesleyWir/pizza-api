@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { OrderModel } from '@/domain/models/order';
-import { PizzaModel } from '@/domain/models/pizza';
+import { OrderModel } from '../../../domain/models/order';
+import { PizzaModel } from '../../../domain/models/pizza';
 
 export class OrderPresenter {
   @ApiProperty()
