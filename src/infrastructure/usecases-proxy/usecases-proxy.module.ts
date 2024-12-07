@@ -22,6 +22,11 @@ import { createAdditionalUseCases } from '@/usecases/additional/createAdditional
 import { updateAdditionalUseCases } from '@/usecases/additional/updateAdditional.usecases';
 import { deleteAdditionalUseCases } from '@/usecases/additional/deleteAdditional.usecases';
 import { getAdditionalUseCases } from '@/usecases/additional/getAdditional.usecases';
+import { DatabaseOrderRepository } from '../repositories/order.repository';
+import { deleteOrderUseCases } from '@/usecases/order/deleteOrder.usecases';
+import { storeOrderUseCases } from '@/usecases/order/storeOrder.usecases';
+import { DatabasePizzaRepository } from '../repositories/pizza.repository';
+import { getOrderUseCases } from '@/usecases/order/getOrder.usecases';
 
 @Module({
     imports: [LoggerModule, RepositoriesModule, ExceptionsModule],
@@ -44,6 +49,10 @@ export class UsecasesProxyModule {
     static POST_ADDITIONAL_USECASES_PROXY = 'postAdditionalUsecasesProxy';
     static DELETE_ADDITIONAL_USECASES_PROXY = 'deleteAdditionalUsecasesProxy';
     static PUT_ADDITIONAL_USECASES_PROXY = 'putAdditionalUsecasesProxy';
+
+    static STORE_ORDER_USECASES_PROXY = 'storeOrderUsecasesProxy';
+    static GET_ORDER_USECASES_PROXY = 'getOrderUsecasesProxy';
+    static DELETE_ORDER_USECASES_PROXY = 'deleteOrderUsecasesProxy';
 
     static register(): DynamicModule {
         return {
@@ -136,6 +145,37 @@ export class UsecasesProxyModule {
                     useFactory: (logger: LoggerService, sizeRepository: DatabaseAdditionalRepository) =>
                         new UseCaseProxy(new deleteAdditionalUseCases(logger, sizeRepository)),
                 },
+                {
+                    inject: [LoggerService, DatabaseOrderRepository],
+                    provide: UsecasesProxyModule.STORE_ORDER_USECASES_PROXY,
+                    useFactory: (
+                        logger: LoggerService,
+                        orderRepository: DatabaseOrderRepository,
+                        pizzaRepository: DatabasePizzaRepository,
+                        sizeRepository: DatabaseSizeRepository,
+                        flavorRepository: DatabaseFlavorRepository,
+                        additionalRepository: DatabaseAdditionalRepository,
+                    ) =>
+                        new UseCaseProxy(new storeOrderUseCases(
+                            logger,
+                            orderRepository,
+                            pizzaRepository,
+                            sizeRepository,
+                            flavorRepository,
+                            additionalRepository,
+                        )),
+                },
+                {
+                    inject: [LoggerService, DatabaseOrderRepository],
+                    provide: UsecasesProxyModule.GET_ORDER_USECASES_PROXY,
+                    useFactory: (orderRepository: DatabaseOrderRepository) => new UseCaseProxy(new getOrderUseCases(orderRepository)),
+                },
+                {
+                    inject: [LoggerService, DatabaseOrderRepository],
+                    provide: UsecasesProxyModule.DELETE_ORDER_USECASES_PROXY,
+                    useFactory: (logger: LoggerService, orderRepository: DatabaseOrderRepository) =>
+                        new UseCaseProxy(new deleteOrderUseCases(logger, orderRepository)),
+                },
             ],
             exports: [
                 UsecasesProxyModule.GET_SIZE_USECASES_PROXY,
@@ -153,6 +193,9 @@ export class UsecasesProxyModule {
                 UsecasesProxyModule.POST_ADDITIONAL_USECASES_PROXY,
                 UsecasesProxyModule.PUT_ADDITIONAL_USECASES_PROXY,
                 UsecasesProxyModule.DELETE_ADDITIONAL_USECASES_PROXY,
+                UsecasesProxyModule.STORE_ORDER_USECASES_PROXY,
+                UsecasesProxyModule.GET_ORDER_USECASES_PROXY,
+                UsecasesProxyModule.DELETE_ORDER_USECASES_PROXY,
             ],
         };
     }

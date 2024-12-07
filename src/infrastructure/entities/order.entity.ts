@@ -9,8 +9,8 @@ export class Order {
     @Column('varchar', { length: 255, nullable: true })
     observation: string;
 
-    @Column({ name: 'preparation_time', type: 'integer' })
-    preparationTime: number;
+    @Column({ name: 'total_preparation_time', type: 'integer' })
+    totalPreparationTime: number;
 
     @Column({ name: 'total_price', type: 'float' })
     totalPrice: number;

@@ -4,14 +4,16 @@ import { SizeController } from './size/size.controller';
 import { FlavorController } from './flavor/flavor.controller';
 import { AdditionalController } from './additional/additional.controller';
 import { MenuController } from './menu/menu.controller';
+import { OrderController } from './order/order.controller';
 
 @Module({
   imports: [UsecasesProxyModule.register()],
   controllers: [
-    SizeController, 
-    FlavorController, 
+    SizeController,
+    FlavorController,
     AdditionalController,
-    MenuController
+    MenuController,
+    OrderController
   ],
 })
 export class ControllersModule { }

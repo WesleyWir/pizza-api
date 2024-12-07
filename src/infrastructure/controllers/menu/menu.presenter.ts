@@ -14,15 +14,15 @@ export class Menu {
 
 export class MenuPresenter {
   @ApiProperty()
-  flavors: FlavorPresenter[];
+  flavors: FlavorModel[];
   @ApiProperty()
-  sizes: SizePresenter[];
+  sizes: SizeModel[];
   @ApiProperty()
-  additionals: AdditionalPresenter[];
+  additionals: AdditionalModel[];
 
   constructor(menu: Menu) {
-    this.flavors = menu.flavors.map((flavor) => new FlavorPresenter(flavor));
-    this.sizes = menu.sizes.map((size) => new SizePresenter(size));
-    this.additionals = menu.additionals.map((additional) => new AdditionalPresenter(additional));
+    this.flavors = menu.flavors;
+    this.sizes = menu.sizes;
+    this.additionals = menu.additionals;
   }
 }
