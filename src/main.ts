@@ -27,15 +27,15 @@ async function bootstrap() {
     extraModels: [ResponseFormat],
     deepScanRoutes: true,
   });
-  SwaggerModule.setup(globalPrefix, app, document);
+  SwaggerModule.setup('/', app, document);
   const port = process.env.PORT ?? 3001;
   await app.listen(process.env.PORT ?? 3001);
   console.log(`running app on port ${port}`);
   if (process.env.NODE_ENV === 'development') {
-    const baseUrl = process.env.BASE_URL;
+    const baseUrl = process.env.BASE_URL ?? 'http://localhost:3001';
     console.log(`Generating Swagger UI static files to '/swagger-static'`);
     get(
-      `${baseUrl}/swagger/swagger-ui-bundle.js`, function
+      `${baseUrl}/swagger-ui-bundle.js`, function
       (response) {
       response.pipe(createWriteStream('swagger-static/swagger-ui-bundle.js'));
       console.log(
@@ -43,7 +43,7 @@ async function bootstrap() {
       );
     });
 
-    get(`${baseUrl}/swagger/swagger-ui-init.js`, function (response) {
+    get(`${baseUrl}/swagger-ui-init.js`, function (response) {
       response.pipe(createWriteStream('swagger-static/swagger-ui-init.js'));
       console.log(
         `Swagger UI init file written to: '/swagger-static/swagger-ui-init.js'`,
@@ -51,7 +51,7 @@ async function bootstrap() {
     });
 
     get(
-      `${baseUrl}/swagger/swagger-ui-standalone-preset.js`,
+      `${baseUrl}/swagger-ui-standalone-preset.js`,
       function (response) {
         response.pipe(
           createWriteStream('swagger-static/swagger-ui-standalone-preset.js'),
@@ -61,7 +61,7 @@ async function bootstrap() {
         );
       });
 
-    get(`${baseUrl}/swagger/swagger-ui.css`, function (response) {
+    get(`${baseUrl}/swagger-ui.css`, function (response) {
       response.pipe(createWriteStream('swagger-static/swagger-ui.css'));
       console.log(
         `Swagger UI css file written to: '/swagger-static/swagger-ui.css'`,
