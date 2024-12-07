@@ -4,25 +4,25 @@ import { EnvironmentConfigModule } from '../environment-config/environment-confi
 import { EnvironmentConfigService } from '../environment-config/environment-config.service';
 
 export const getTypeOrmModuleOptions = (config: EnvironmentConfigService): TypeOrmModuleOptions =>
-  ({
-    type: 'mysql',
-    host: config.getDatabaseHost(),
-    port: config.getDatabasePort(),
-    username: config.getDatabaseUser(),
-    password: config.getDatabasePassword(),
-    database: config.getDatabaseName(),
-    entities: [__dirname + './../../**/*.entity{.ts,.js}'],
-    synchronize: false,
-    schema: process.env.DATABASE_SCHEMA,
-    migrationsRun: true,
-    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
-    cli: {
-      migrationsDir: 'src/migrations',
-    },
-    // ssl: {
-    //   rejectUnauthorized: false,
-    // },
-  } as TypeOrmModuleOptions);
+({
+  type: config.getDatabaseType(),
+  host: config.getDatabaseHost(),
+  port: config.getDatabasePort(),
+  username: config.getDatabaseUser(),
+  password: config.getDatabasePassword(),
+  database: config.getDatabaseName(),
+  entities: [__dirname + './../../**/*.entity{.ts,.js}'],
+  synchronize: false,
+  schema: process.env.DATABASE_SCHEMA,
+  migrationsRun: true,
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+  cli: {
+    migrationsDir: 'src/migrations',
+  },
+  // ssl: {
+  //   rejectUnauthorized: false,
+  // },
+} as TypeOrmModuleOptions);
 
 @Module({
   imports: [
@@ -33,4 +33,4 @@ export const getTypeOrmModuleOptions = (config: EnvironmentConfigService): TypeO
     }),
   ],
 })
-export class TypeOrmConfigModule {}
+export class TypeOrmConfigModule { }

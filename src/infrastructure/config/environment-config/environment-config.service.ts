@@ -6,6 +6,10 @@ import { DatabaseConfig } from '../../../domain/config/database.service';
 export class EnvironmentConfigService implements DatabaseConfig {
   constructor(private configService: ConfigService) {}
 
+  getDatabaseType(): string {
+    return this.configService.get<string>('DATABASE_TYPE');
+  }
+
   getDatabaseHost(): string {
     return this.configService.get<string>('DATABASE_HOST');
   }
