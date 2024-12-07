@@ -15,7 +15,7 @@ export class DatabaseFlavorRepository implements FlavorRepository {
   async create(flavor: FlavorModel): Promise<FlavorModel> {
     const flavorEntity = flavor;
     const result = await this.flavorEntityRepository.insert(flavorEntity);
-    return this.toFlavor(result.generatedMaps[0] as Flavor);
+    return result.generatedMaps[0] as Flavor;
   }
 
   async update(id: number, flavor: FlavorModel): Promise<void> {
@@ -28,25 +28,12 @@ export class DatabaseFlavorRepository implements FlavorRepository {
   }
   async findAll(): Promise<FlavorModel[]> {
     const flavorsEntity = await this.flavorEntityRepository.find();
-    return flavorsEntity.map((flavorEntity) => this.toFlavor(flavorEntity));
+    return flavorsEntity.map((flavorEntity) => flavorEntity);
   }
   async findById(id: number): Promise<FlavorModel> {
-    const flavorEntity = await this.flavorEntityRepository.findOneOrFail({ where: { id } });
-    return this.toFlavor(flavorEntity);
+    return await this.flavorEntityRepository.findOneOrFail({ where: { id } });
   }
   async deleteById(id: number): Promise<void> {
     await this.flavorEntityRepository.delete({ id: id });
-  }
-
-  private toFlavor(flavorEntity: Flavor): FlavorModel {
-    const flavor: FlavorModel = new FlavorModel();
-
-    flavor.id = flavorEntity.id;
-    flavor.name = flavorEntity.name;
-    flavor.additionalTime = flavorEntity.additionalTime;
-    flavor.createdAt = flavorEntity.createdAt;
-    flavor.createdAt = flavorEntity.createdAt;
-
-    return flavor;
   }
 }

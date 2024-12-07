@@ -16,6 +16,12 @@ import { getFlavorsUseCases } from '../../usecases/flavor/getFlavors.usecases';
 import { updateFlavorUseCases } from '../../usecases/flavor/updateFlavor.usecases';
 import { deleteFlavorUseCases } from '../../usecases/flavor/deleteFlavor.usecases';
 import { getFlavorUseCases } from '../../usecases/flavor/getFlavor.usecases';
+import { DatabaseAdditionalRepository } from '../repositories/additional.repository';
+import { getAdditionalsUseCases } from '@/usecases/additional/getAdditionals.usecases';
+import { createAdditionalUseCases } from '@/usecases/additional/createAdditional.usecases';
+import { updateAdditionalUseCases } from '@/usecases/additional/updateAdditional.usecases';
+import { deleteAdditionalUseCases } from '@/usecases/additional/deleteAdditional.usecases';
+import { getAdditionalUseCases } from '@/usecases/additional/getAdditional.usecases';
 
 @Module({
     imports: [LoggerModule, RepositoriesModule, ExceptionsModule],
@@ -26,11 +32,18 @@ export class UsecasesProxyModule {
     static POST_SIZE_USECASES_PROXY = 'postSizeUsecasesProxy';
     static DELETE_SIZE_USECASES_PROXY = 'deleteSizeUsecasesProxy';
     static PUT_SIZE_USECASES_PROXY = 'putSizeUsecasesProxy';
-    static GET_FLAVOR_USECASES_PROXY = 'getSizeUsecasesProxy';
-    static GET_FLAVORS_USECASES_PROXY = 'getSizesUsecasesProxy';
-    static POST_FLAVOR_USECASES_PROXY = 'postSizeUsecasesProxy';
-    static DELETE_FLAVOR_USECASES_PROXY = 'deleteSizeUsecasesProxy';
-    static PUT_FLAVOR_USECASES_PROXY = 'putSizeUsecasesProxy';
+
+    static GET_FLAVOR_USECASES_PROXY = 'getFlavorUsecasesProxy';
+    static GET_FLAVORS_USECASES_PROXY = 'getFlavorsUsecasesProxy';
+    static POST_FLAVOR_USECASES_PROXY = 'postFlavorUsecasesProxy';
+    static DELETE_FLAVOR_USECASES_PROXY = 'deleteFlavorUsecasesProxy';
+    static PUT_FLAVOR_USECASES_PROXY = 'putFlavorUsecasesProxy';
+
+    static GET_ADDITIONAL_USECASES_PROXY = 'getAdditionalUsecasesProxy';
+    static GET_ADDITIONALS_USECASES_PROXY = 'getAdditionalsUsecasesProxy';
+    static POST_ADDITIONAL_USECASES_PROXY = 'postAdditionalUsecasesProxy';
+    static DELETE_ADDITIONAL_USECASES_PROXY = 'deleteAdditionalUsecasesProxy';
+    static PUT_ADDITIONAL_USECASES_PROXY = 'putAdditionalUsecasesProxy';
 
     static register(): DynamicModule {
         return {
@@ -94,6 +107,35 @@ export class UsecasesProxyModule {
                     useFactory: (logger: LoggerService, sizeRepository: DatabaseFlavorRepository) =>
                         new UseCaseProxy(new deleteFlavorUseCases(logger, sizeRepository)),
                 },
+                {
+                    inject: [DatabaseAdditionalRepository],
+                    provide: UsecasesProxyModule.GET_ADDITIONAL_USECASES_PROXY,
+                    useFactory: (sizeRepository: DatabaseAdditionalRepository) => new UseCaseProxy(new getAdditionalUseCases(sizeRepository)),
+                },
+                {
+                    inject: [DatabaseAdditionalRepository],
+                    provide: UsecasesProxyModule.GET_ADDITIONALS_USECASES_PROXY,
+                    useFactory: (sizeRepository: DatabaseAdditionalRepository) =>
+                        new UseCaseProxy(new getAdditionalsUseCases(sizeRepository)),
+                },
+                {
+                    inject: [LoggerService, DatabaseAdditionalRepository],
+                    provide: UsecasesProxyModule.POST_ADDITIONAL_USECASES_PROXY,
+                    useFactory: (logger: LoggerService, sizeRepository: DatabaseAdditionalRepository) =>
+                        new UseCaseProxy(new createAdditionalUseCases(logger, sizeRepository)),
+                },
+                {
+                    inject: [LoggerService, DatabaseAdditionalRepository],
+                    provide: UsecasesProxyModule.PUT_ADDITIONAL_USECASES_PROXY,
+                    useFactory: (logger: LoggerService, sizeRepository: DatabaseAdditionalRepository) =>
+                        new UseCaseProxy(new updateAdditionalUseCases(logger, sizeRepository)),
+                },
+                {
+                    inject: [LoggerService, DatabaseAdditionalRepository],
+                    provide: UsecasesProxyModule.DELETE_ADDITIONAL_USECASES_PROXY,
+                    useFactory: (logger: LoggerService, sizeRepository: DatabaseAdditionalRepository) =>
+                        new UseCaseProxy(new deleteAdditionalUseCases(logger, sizeRepository)),
+                },
             ],
             exports: [
                 UsecasesProxyModule.GET_SIZE_USECASES_PROXY,
@@ -106,6 +148,11 @@ export class UsecasesProxyModule {
                 UsecasesProxyModule.POST_FLAVOR_USECASES_PROXY,
                 UsecasesProxyModule.PUT_FLAVOR_USECASES_PROXY,
                 UsecasesProxyModule.DELETE_FLAVOR_USECASES_PROXY,
+                UsecasesProxyModule.GET_ADDITIONAL_USECASES_PROXY,
+                UsecasesProxyModule.GET_ADDITIONALS_USECASES_PROXY,
+                UsecasesProxyModule.POST_ADDITIONAL_USECASES_PROXY,
+                UsecasesProxyModule.PUT_ADDITIONAL_USECASES_PROXY,
+                UsecasesProxyModule.DELETE_ADDITIONAL_USECASES_PROXY,
             ],
         };
     }

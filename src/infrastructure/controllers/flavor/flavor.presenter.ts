@@ -13,11 +13,11 @@ export class FlavorPresenter {
   @ApiProperty()
   updatedAt: Date;
 
-  constructor(size: FlavorModel) {
-    this.id = size.id;
-    this.name = size.name;
-    this.additionalTime = size.additionalTime;
-    this.createdAt = size.createdAt;
-    this.updatedAt = size.updatedAt;
+  constructor(flavor: FlavorModel) {
+    this.id = flavor.id;
+    this.name = flavor.name;
+    this.additionalTime = flavor.additionalTime;
+    this.createdAt = flavor.createdAt;
+    this.updatedAt = flavor.updatedAt;
   }
 }
