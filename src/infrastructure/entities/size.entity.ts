@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Pizza } from './pizza.entity';
 
 @Entity('sizes')
 export class Size {
@@ -10,6 +11,9 @@ export class Size {
 
   @Column({ type: 'float' })
   price: number;
+
+  @OneToMany(() => Pizza, (pizza) => pizza.size)
+  pizzas: Pizza[];
 
   @CreateDateColumn({ name: 'created_at', type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public createdAt: Date;

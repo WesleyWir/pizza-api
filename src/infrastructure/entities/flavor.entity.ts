@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+import { Pizza } from './pizza.entity';
 
 @Entity('flavors')
 export class Flavor {
@@ -10,6 +11,9 @@ export class Flavor {
 
   @Column({ name: 'additional_time', type: 'integer' })
   additionalTime: number;
+
+  @OneToMany(() => Pizza, (pizza) => pizza.flavor)
+  pizzas: Pizza[];
 
   @CreateDateColumn({ name: 'created_at', type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)" })
   public createdAt: Date;

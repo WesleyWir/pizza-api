@@ -1,11 +1,12 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class CreatePizzasTable1733543501925 implements MigrationInterface {
+export class CreatePizzasTable1733551245381 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+        const tableName = 'pizzas';
         queryRunner.createTable(
             new Table({
-                name: "pizzas",
+                name: tableName,
                 columns: [
                     {
                         name: "id",
@@ -17,7 +18,7 @@ export class CreatePizzasTable1733543501925 implements MigrationInterface {
                     {
                         name: 'order_id',
                         type: 'varchar',
-                        isNullable: true
+                        isNullable: true,
                     },
                     {
                         name: 'size_id',
@@ -28,10 +29,14 @@ export class CreatePizzasTable1733543501925 implements MigrationInterface {
                         type: 'int',
                     },
                     {
+                        name: "preparation_time",
+                        type: "int",
+                        isNullable: true,
+                    },
+                    {
                         name: "price",
                         type: "float",
-                        isNullable: false,
-                        default: 0
+                        isNullable: true,
                     },
                     {
                         name: "created_at",
@@ -44,6 +49,36 @@ export class CreatePizzasTable1733543501925 implements MigrationInterface {
                         default: "now()",
                     },
                 ],
+            }),
+        );
+
+        await queryRunner.createForeignKey(
+            tableName,
+            new TableForeignKey({
+                columnNames: ['order_id'],
+                referencedColumnNames: ['id'],
+                referencedTableName: 'orders',
+                onDelete: 'CASCADE',
+            }),
+        );
+
+        await queryRunner.createForeignKey(
+            tableName,
+            new TableForeignKey({
+                columnNames: ['size_id'],
+                referencedColumnNames: ['id'],
+                referencedTableName: 'sizes',
+                onDelete: 'CASCADE',
+            }),
+        );
+
+        await queryRunner.createForeignKey(
+            tableName,
+            new TableForeignKey({
+                columnNames: ['flavor_id'],
+                referencedColumnNames: ['id'],
+                referencedTableName: 'flavors',
+                onDelete: 'CASCADE',
             }),
         );
     }

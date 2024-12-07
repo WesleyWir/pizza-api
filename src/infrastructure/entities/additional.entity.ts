@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Pizza } from './pizza.entity';
 
 @Entity('additionals')
 export class Additional {
@@ -19,4 +20,12 @@ export class Additional {
 
   @UpdateDateColumn({ name: 'updated_at', type: "timestamp", default: () => "CURRENT_TIMESTAMP(6)", onUpdate: "CURRENT_TIMESTAMP(6)" })
   public updatedAt: Date;
+
+  @ManyToMany(() => Pizza, (pizza) => pizza.additionals)
+  @JoinTable({
+    name: 'pizza_additionals',
+    joinColumns: [{ name: 'pizza_id' }],
+    inverseJoinColumns: [{ name: 'additional_id' }],
+  })
+  pizzas: Pizza[] | null;
 }
