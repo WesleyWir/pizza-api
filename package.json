@@ -24,7 +24,7 @@
     "migration:generate": "npm run typeorm -- -d ./src/infrastructure/config/typeorm/typeorm.config.ts migration:generate ./database/migrations/$npm_config_name",
     "migration:create": "npm run typeorm migration:create ./database/migrations/$npm_config_name",
     "migration:revert": "npm run typeorm -- -d ./src/infrastructure/config/typeorm/typeorm.config.ts migration:revert",
-    "seed": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./database/seed.ts"
+    "seed": "ts-node -r tsconfig-paths/register ./database/seed.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -62,7 +62,7 @@
     "supertest": "^7.0.0",
     "ts-jest": "^29.1.0",
     "ts-loader": "^9.4.3",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.1.3"
   },
