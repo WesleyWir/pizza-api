@@ -15,13 +15,18 @@ export class DatabaseOrderRepository implements OrderRepository {
   ) { }
 
   async create(order: OrderModel): Promise<OrderModel> {
+    let totalPreparationTime = 0;
+    let totalPrice = 0;
     if (order.pizzas && order.pizzas.length > 0) {
       order.pizzas = order.pizzas.map(pizza => {
         pizza.order = order;
+        totalPreparationTime += pizza.preparationTime;
+        totalPrice += pizza.price;
         return pizza;
       });
     }
-
+    order.totalPreparationTime = totalPreparationTime;
+    order.totalPrice = totalPrice;
     return await this.orderEntityRepository.save(order);
   }
 

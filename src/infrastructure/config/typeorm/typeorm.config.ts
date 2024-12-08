@@ -22,7 +22,7 @@ const config: DataSourceOptions = {
   synchronize: false,
   migrationsRun: true,
   migrationsTableName: 'migrations',
-  migrations: [__dirname + '/../../database/migrations/**/*{.ts,.js}'],
+  migrations: ['database/migrations/**/*{.ts,.js}'],
 };
 
 export const connectionSource = new DataSource(config);

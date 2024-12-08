@@ -15,8 +15,8 @@ export class SizeSeederService {
 
     create(): Array<Promise<SizeModel>> {
         return sizes.map(async (size: ISize) => {
-            const { name, price } = size;
-            return await this.createSizeUsecaseProxy.getInstance().execute(name, price);
+            const { name, price, preparationTime } = size;
+            return await this.createSizeUsecaseProxy.getInstance().execute(name, price, preparationTime);
         });
     }
 }

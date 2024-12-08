@@ -21,7 +21,7 @@ export class UpdateFlavorDto {
     readonly name: string;
 
     @ApiProperty({
-        required: true,
+        required: false,
         example: 5,
         description: 'The additional time (in minutes) required for this flavor.',
     })
@@ -40,7 +40,7 @@ export class CreateFlavorDto {
     readonly name: string;
 
     @ApiProperty({
-        required: true,
+        required: false,
         example: 7,
         description: 'The additional time (in minutes) required for this flavor.',
     })

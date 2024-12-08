@@ -44,6 +44,7 @@ export class DatabaseSizeRepository implements SizeRepository {
     size.id = sizeEntity.id;
     size.name = sizeEntity.name;
     size.price = sizeEntity.price;
+    size.preparationTime = sizeEntity.preparationTime;
     size.createdAt = sizeEntity.createdAt;
     size.createdAt = sizeEntity.createdAt;
 

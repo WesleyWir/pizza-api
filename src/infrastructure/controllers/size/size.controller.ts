@@ -28,7 +28,7 @@ export class SizeController {
     private readonly deleteSizeUsecaseProxy: UseCaseProxy<deleteSizeUseCases>,
     @Inject(UsecasesProxyModule.POST_SIZE_USECASES_PROXY)
     private readonly createSizeUsecaseProxy: UseCaseProxy<createSizeUseCases>,
-  ) {}
+  ) { }
 
   @Get(':id')
   @ApiResponseType(SizePresenter, false)
@@ -47,8 +47,13 @@ export class SizeController {
   @Put(':id')
   @ApiResponseType(SizePresenter, true)
   async updateSize(@Body() updateSizeDto: UpdateSizeDto) {
-    const { id, name, price } = updateSizeDto;
-    await this.updateSizeUsecaseProxy.getInstance().execute(id, name, price);
+    const { id, name, price, preparation_time } = updateSizeDto;
+    await this.updateSizeUsecaseProxy.getInstance().execute(
+      id,
+      name,
+      price,
+      preparation_time
+    );
     return 'success';
   }
 
@@ -62,8 +67,12 @@ export class SizeController {
   @Post()
   @ApiResponseType(SizePresenter, true)
   async createSize(@Body() createSizeDto: CreateSizeDto) {
-    const { name, price } = createSizeDto;
-    const sizeCreated = await this.createSizeUsecaseProxy.getInstance().execute(name, price);
+    const { name, price, preparation_time } = createSizeDto;
+    const sizeCreated = await this.createSizeUsecaseProxy.getInstance().execute(
+      name,
+      price,
+      preparation_time
+    );
     return new SizePresenter(sizeCreated);
   }
 }

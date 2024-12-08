@@ -27,6 +27,14 @@ export class UpdateSizeDto {
     })
     @IsNotEmpty()
     readonly price: number;
+
+    @ApiProperty({
+        required: true,
+        example: 10,
+        description: 'The preparation time (in minutes) required for this size.',
+    })
+    @IsNotEmpty()
+    readonly preparation_time: number;
 }
 
 export class CreateSizeDto {
@@ -46,4 +54,12 @@ export class CreateSizeDto {
     })
     @IsNotEmpty()
     readonly price: number;
+
+    @ApiProperty({
+        required: true,
+        example: 10,
+        description: 'The preparation time (in minutes) required for this size',
+    })
+    @IsNotEmpty()
+    readonly preparation_time: number;
 }

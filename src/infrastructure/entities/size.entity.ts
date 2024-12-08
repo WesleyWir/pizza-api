@@ -12,6 +12,9 @@ export class Size {
   @Column({ type: 'float' })
   price: number;
 
+  @Column({ name: 'preparation_time', type: 'float' })
+  preparationTime: number;
+
   @OneToMany(() => Pizza, (pizza) => pizza.size)
   pizzas: Pizza[];
 

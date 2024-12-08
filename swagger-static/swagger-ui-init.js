@@ -877,6 +877,23 @@ window.onload = function() {
             "orders"
           ]
         }
+      },
+      "/api/reset/database": {
+        "post": {
+          "operationId": "ResetController_resetDatabase",
+          "parameters": [],
+          "responses": {
+            "201": {
+              "description": ""
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "reset"
+          ]
+        }
       }
     },
     "info": {
@@ -906,12 +923,18 @@ window.onload = function() {
               "type": "number",
               "description": "Price of the size",
               "example": 15.99
+            },
+            "preparation_time": {
+              "type": "number",
+              "description": "Preparation time for the size.",
+              "example": 10
             }
           },
           "required": [
             "id",
             "name",
-            "price"
+            "price",
+            "preparation_time"
           ]
         },
         "UpdateSizeDto": {
@@ -931,12 +954,18 @@ window.onload = function() {
               "type": "number",
               "example": 10,
               "description": "The price of the size."
+            },
+            "preparation_time": {
+              "type": "number",
+              "example": 10,
+              "description": "The preparation time (in minutes) required for this size."
             }
           },
           "required": [
             "id",
             "name",
-            "price"
+            "price",
+            "preparation_time"
           ]
         },
         "CreateSizeDto": {
@@ -951,11 +980,17 @@ window.onload = function() {
               "type": "number",
               "example": 12,
               "description": "The price of the size."
+            },
+            "preparation_time": {
+              "type": "number",
+              "example": 10,
+              "description": "The preparation time (in minutes) required for this size"
             }
           },
           "required": [
             "name",
-            "price"
+            "price",
+            "preparation_time"
           ]
         },
         "FlavorPresenter": {
@@ -1001,8 +1036,7 @@ window.onload = function() {
           },
           "required": [
             "id",
-            "name",
-            "additional_time"
+            "name"
           ]
         },
         "CreateFlavorDto": {
@@ -1020,8 +1054,7 @@ window.onload = function() {
             }
           },
           "required": [
-            "name",
-            "additional_time"
+            "name"
           ]
         },
         "AdditionalPresenter": {

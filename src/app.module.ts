@@ -7,6 +7,7 @@ import { UsecasesProxyModule } from './infrastructure/usecases-proxy/usecases-pr
 import { ControllersModule } from './infrastructure/controllers/controllers.module';
 import { RepositoriesModule } from './infrastructure/repositories/repositories.module';
 import { join } from 'path';
+import { ServicesModule } from './infrastructure/services/services.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { join } from 'path';
     ExceptionsModule,
     RepositoriesModule,
     UsecasesProxyModule.register(),
+    ServicesModule,
     ControllersModule,
     EnvironmentConfigModule,
   ],

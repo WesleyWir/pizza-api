@@ -5,15 +5,23 @@ import { FlavorController } from './flavor/flavor.controller';
 import { AdditionalController } from './additional/additional.controller';
 import { MenuController } from './menu/menu.controller';
 import { OrderController } from './order/order.controller';
+import { ResetService } from '../services/reset.service';
+import { ResetController } from './reset/reset.controller';
 
 @Module({
-  imports: [UsecasesProxyModule.register()],
+  imports: [
+    UsecasesProxyModule.register(),
+  ],
   controllers: [
     SizeController,
     FlavorController,
     AdditionalController,
     MenuController,
-    OrderController
+    OrderController,
+    ResetController
   ],
+  providers: [
+    ResetService
+  ]
 })
 export class ControllersModule { }

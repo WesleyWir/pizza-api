@@ -20,9 +20,16 @@ export class SizePresenter {
   })
   price: number;
 
+  @ApiProperty({
+    description: 'Preparation time for the size.',
+    example: 10,
+  })
+  preparation_time: number;
+
   constructor(size: SizeModel) {
     this.id = size.id;
     this.name = size.name;
     this.price = size.price;
+    this.preparation_time = size.preparationTime;
   }
 }
