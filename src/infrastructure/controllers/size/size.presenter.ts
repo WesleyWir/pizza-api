@@ -2,11 +2,22 @@ import { ApiProperty } from '@nestjs/swagger';
 import { SizeModel } from '../../../domain/models/size';
 
 export class SizePresenter {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Unique identifier for the size',
+    example: 1,
+  })
   id: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'Name of the size (e.g., Small, Medium, Large)',
+    example: 'Large',
+  })
   name: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'Price of the size',
+    example: 15.99,
+  })
   price: number;
 
   constructor(size: SizeModel) {

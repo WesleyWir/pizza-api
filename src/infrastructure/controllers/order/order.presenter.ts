@@ -3,19 +3,65 @@ import { OrderModel } from '../../../domain/models/order';
 import { PizzaPresenter } from './pizza.presenter';
 
 export class OrderPresenter {
-  @ApiProperty()
+  @ApiProperty({
+    example: 'ORD12345',
+  })
   id: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    type: [PizzaPresenter],
+    example: [
+      {
+        id: 1,
+        order_id: 'ORD12345',
+        size: {
+          id: 1,
+          name: 'Large',
+          price: 15.99,
+        },
+        flavor: {
+          id: 1,
+          name: 'Margherita',
+          additional_time: 5
+        },
+        additionals: [
+          {
+            id: 1,
+            name: 'Olives',
+            additional_time: 5,
+            additional_price: 15,
+          },
+        ],
+        price: 18.99,
+        preparation_time: 15,
+      },
+    ],
+  })
   pizzas: PizzaPresenter[];
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 'No onions on the pizza.',
+  })
   observation: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 45,
+  })
   total_preparation_time: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 49.99,
+  })
   total_price: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: '2024-12-07T12:00:00Z',
+  })
   created_at: Date;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: '2024-12-07T12:30:00Z',
+  })
   updated_at: Date;
 
   constructor(order: OrderModel) {

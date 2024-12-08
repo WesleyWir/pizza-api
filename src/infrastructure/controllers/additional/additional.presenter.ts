@@ -2,13 +2,24 @@ import { ApiProperty } from '@nestjs/swagger';
 import { AdditionalModel } from '../../../domain/models/additional';
 
 export class AdditionalPresenter {
-  @ApiProperty()
+  @ApiProperty({
+    example: 1,
+  })
   id: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 'Olives',
+  })
   name: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 10,
+  })
   additional_time: number;
-  @ApiProperty()
+
+  @ApiProperty({
+    example: 2.5,
+  })
   additional_price: number;
 
   constructor(additional: AdditionalModel) {

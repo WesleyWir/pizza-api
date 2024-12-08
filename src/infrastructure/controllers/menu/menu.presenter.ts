@@ -13,11 +13,57 @@ export class Menu {
 }
 
 export class MenuPresenter {
-  @ApiProperty()
+  @ApiProperty({
+    type: [FlavorPresenter],
+    example: [
+      {
+        id: 1,
+        name: 'Margherita',
+        additional_time: 5
+      },
+      {
+        id: 2,
+        name: 'Pepperoni',
+        additional_time: 0
+      },
+    ],
+  })
   flavors: FlavorPresenter[];
-  @ApiProperty()
+
+  @ApiProperty({
+    type: [SizePresenter],
+    example: [
+      {
+        id: 1,
+        name: 'Small',
+        price: 8.99,
+      },
+      {
+        id: 2,
+        name: 'Large',
+        price: 12.99,
+      },
+    ],
+  })
   sizes: SizePresenter[];
-  @ApiProperty()
+
+  @ApiProperty({
+    type: [AdditionalPresenter],
+    example: [
+      {
+        id: 1,
+        name: 'Olives',
+        additional_time: 5,
+        additional_price: 2.5,
+      },
+      {
+        id: 2,
+        name: 'Mushrooms',
+        additional_time: 5,
+        additional_price: 3.0,
+      },
+    ],
+  })
   additionals: AdditionalPresenter[];
 
   constructor(menu: Menu) {

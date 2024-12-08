@@ -4,15 +4,34 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export class ResponseFormat<T> {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Indicates whether the response data is an array.',
+    example: true,
+  })
   isArray: boolean;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'The requested API path.',
+    example: '/api/orders',
+  })
   path: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'The duration of the request in milliseconds.',
+    example: '120ms',
+  })
   duration: string;
-  @ApiProperty()
+
+  @ApiProperty({
+    description: 'The HTTP method used for the request (GET, POST, etc.).',
+    example: 'GET',
+  })
   method: string;
 
+  @ApiProperty({
+    description: 'The actual response data.',
+    example: { id: 1, name: 'Margherita', price: 12.5 },
+  })
   data: T;
 }
 

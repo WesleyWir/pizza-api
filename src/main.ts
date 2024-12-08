@@ -18,7 +18,6 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
   app.useGlobalInterceptors(new ResponseInterceptor());
   const config = new DocumentBuilder()
-    .addBearerAuth()
     .setTitle('Clean Architecture Pizza Api')
     .setDescription('Pizza Api')
     .setVersion('1')

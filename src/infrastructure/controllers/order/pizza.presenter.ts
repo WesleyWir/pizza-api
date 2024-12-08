@@ -5,19 +5,61 @@ import { SizePresenter } from '../size/size.presenter';
 import { AdditionalPresenter } from '../additional/additional.presenter';
 
 export class PizzaPresenter {
-    @ApiProperty()
+    @ApiProperty({
+        example: 1,
+    })
     id: number;
-    @ApiProperty()
+
+    @ApiProperty({
+        example: 'ORD12345',
+    })
     order_id: string;
-    @ApiProperty()
-    size: SizePresenter
-    @ApiProperty()
-    flavor: FlavorPresenter
-    @ApiProperty()
+
+    @ApiProperty({
+        type: SizePresenter,
+        example: {
+            id: 1,
+            name: 'Large',
+            price: 15.99,
+        },
+    })
+    size: SizePresenter;
+
+    @ApiProperty({
+        type: FlavorPresenter,
+        example: {
+            id: 1,
+            name: 'Margherita',
+            additional_time: 5
+        },
+    })
+    flavor: FlavorPresenter;
+
+    @ApiProperty({
+        type: [AdditionalPresenter],
+        example: [
+            {
+                id: 1,
+                name: 'Olives',
+                price: 20.5,
+            },
+            {
+                id: 2,
+                name: 'Mushrooms',
+                price: 30.5,
+            },
+        ],
+    })
     additionals: AdditionalPresenter[];
-    @ApiProperty()
+
+    @ApiProperty({
+        example: 18.99,
+    })
     price: number;
-    @ApiProperty()
+
+    @ApiProperty({
+        example: 15,
+    })
     preparation_time: number;
 
     constructor(pizza: PizzaModel) {
