@@ -20,15 +20,21 @@ export class storeOrderUseCases {
     async execute(observation: string, pizzas: PizzaModel[]): Promise<OrderModel> {
         const order = new OrderModel();
         order.observation = observation;
+        order.pizzas = [];
+
+
         for (const pizza of pizzas) {
             const newPizza = new PizzaModel();
             let preparationTime = 0;
+
             const size = await this.sizeRepository.findById(pizza.size_id);
             const flavor = await this.flavorRepository.findById(pizza.flavor_id);
+
             let price = size.price;
             preparationTime += flavor.additionalTime;
             newPizza.size = size;
             newPizza.flavor = flavor;
+
             let additionals = [];
             for (const additionalId of pizza.additional_ids) {
                 const additional = await this.additionalRepository.findById(additionalId);
@@ -37,11 +43,17 @@ export class storeOrderUseCases {
                 additionals.push(additional);
             }
             newPizza.additionals = additionals;
+
+            newPizza.price = price;
+            newPizza.preparationTime = preparationTime;
+
             const createdPizza = await this.pizzaRepository.create(newPizza);
             order.pizzas.push(createdPizza);
         }
-        const result = await this.orderRepository.create(order);
-        this.logger.log('storeOrderUseCases execute', 'New order have been inserted');
-        return result;
+        const createdOrder = await this.orderRepository.create(order);
+
+        const updatedOrder = await this.orderRepository.findById(createdOrder.id, ['pizzas']);
+        this.logger.log('storeOrderUseCases execute', 'New order has been inserted');
+        return updatedOrder;
     }
 }

@@ -13,9 +13,8 @@ export class DatabasePizzaRepository implements PizzaRepository {
     ) { }
 
     async create(pizza: PizzaModel): Promise<PizzaModel> {
-        const pizzaEntity = pizza;
-        const result = await this.pizzaEntityRepository.insert(pizzaEntity);
-        return result.generatedMaps[0] as Pizza;
+        const savedPizza = await this.pizzaEntityRepository.save(pizza);
+        return savedPizza;
     }
 
     async findById(id: number): Promise<PizzaModel> {

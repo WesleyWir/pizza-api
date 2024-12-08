@@ -146,7 +146,14 @@ export class UsecasesProxyModule {
                         new UseCaseProxy(new deleteAdditionalUseCases(logger, sizeRepository)),
                 },
                 {
-                    inject: [LoggerService, DatabaseOrderRepository],
+                    inject: [
+                        LoggerService, 
+                        DatabaseOrderRepository,
+                        DatabasePizzaRepository,
+                        DatabaseSizeRepository,
+                        DatabaseFlavorRepository,
+                        DatabaseAdditionalRepository,    
+                    ],
                     provide: UsecasesProxyModule.STORE_ORDER_USECASES_PROXY,
                     useFactory: (
                         logger: LoggerService,

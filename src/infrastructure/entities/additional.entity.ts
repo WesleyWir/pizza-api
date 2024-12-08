@@ -24,8 +24,8 @@ export class Additional {
   @ManyToMany(() => Pizza, (pizza) => pizza.additionals)
   @JoinTable({
     name: 'pizza_additionals',
-    joinColumns: [{ name: 'pizza_id' }],
-    inverseJoinColumns: [{ name: 'additional_id' }],
+    joinColumns: [{ name: 'additional_id' }],
+    inverseJoinColumns: [{ name: 'pizza_id' }],
   })
   pizzas: Pizza[] | null;
 }

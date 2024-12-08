@@ -10,12 +10,17 @@ export class DatabaseOrderRepository implements OrderRepository {
   constructor(
     @InjectRepository(Order)
     private readonly orderEntityRepository: Repository<Order>,
-  ) {}
+  ) { }
 
   async create(order: OrderModel): Promise<OrderModel> {
-    const orderEntity = order;
-    const result = await this.orderEntityRepository.insert(orderEntity);
-    return result.generatedMaps[0] as Order;
+    if (order.pizzas && order.pizzas.length > 0) {
+      order.pizzas = order.pizzas.map(pizza => {
+        pizza.order = order;
+        return pizza;
+      });
+    }
+    
+    return await this.orderEntityRepository.save(order);    
   }
 
   async update(id: string, order: OrderModel): Promise<void> {
@@ -27,9 +32,13 @@ export class DatabaseOrderRepository implements OrderRepository {
     );
   }
 
-  async findById(id: string): Promise<OrderModel> {
-    return await this.orderEntityRepository.findOneOrFail({ where: { id } });
+  async findById(id: string, relations: string[] = []): Promise<OrderModel> {
+    return await this.orderEntityRepository.findOneOrFail({
+      where: { id },
+      relations
+    });
   }
+
   async deleteById(id: string): Promise<void> {
     await this.orderEntityRepository.delete({ id: id });
   }
