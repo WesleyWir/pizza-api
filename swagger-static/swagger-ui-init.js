@@ -784,14 +784,14 @@ window.onload = function() {
           ]
         }
       },
-      "/api/orders/{id} ": {
+      "/api/orders/{id}": {
         "get": {
           "operationId": "OrderController_getOrder",
           "parameters": [
             {
               "name": "id",
               "required": true,
-              "in": "query",
+              "in": "path",
               "schema": {
                 "type": "string"
               }
@@ -830,9 +830,7 @@ window.onload = function() {
           "tags": [
             "orders"
           ]
-        }
-      },
-      "/api/orders/{id}": {
+        },
         "delete": {
           "operationId": "OrderController_deleteOrder",
           "parameters": [

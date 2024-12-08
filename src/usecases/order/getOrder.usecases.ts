@@ -5,6 +5,7 @@ export class getOrderUseCases {
     constructor(private readonly orderRepository: OrderRepository) { }
 
     async execute(id: string): Promise<OrderModel> {
-        return await this.orderRepository.findById(id, ['pizzas']);
+        return await this.orderRepository.findById(id, ['pizzas', 'pizzas.flavor',
+            'pizzas.size', 'pizzas.additionals']);
     }
 }

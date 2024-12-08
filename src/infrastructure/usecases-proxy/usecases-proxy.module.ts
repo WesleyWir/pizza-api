@@ -161,7 +161,7 @@ export class UsecasesProxyModule {
                         )),
                 },
                 {
-                    inject: [LoggerService, DatabaseOrderRepository],
+                    inject: [DatabaseOrderRepository],
                     provide: UsecasesProxyModule.GET_ORDER_USECASES_PROXY,
                     useFactory: (orderRepository: DatabaseOrderRepository) => new UseCaseProxy(new getOrderUseCases(orderRepository)),
                 },

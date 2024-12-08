@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Inject, Param, Post, Query } from "@nestjs/common";
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { OrderPresenter } from "./order.presenter";
 import { ApiResponseType } from "../../../infrastructure/common/swagger/response.decorator";
@@ -42,9 +42,9 @@ export class OrderController {
         return new OrderPresenter(orderCreated);
     }
 
-    @Get(':id ')
+    @Get(':id')
     @ApiResponseType(OrderPresenter, false)
-    async getOrder(@Query('id') id: string) {
+    async getOrder(@Param('id') id: string) {
         const order = await this.getOrderUsecaseProxy.getInstance().execute(id);
         return new OrderPresenter(order);
     }
