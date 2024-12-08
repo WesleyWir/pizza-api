@@ -10,12 +10,12 @@ export class DatabaseAdditionalRepository implements AdditionalRepository {
   constructor(
     @InjectRepository(Additional)
     private readonly additionalEntityRepository: Repository<Additional>,
-  ) {}
+  ) { }
 
   async create(additional: AdditionalModel): Promise<AdditionalModel> {
     const additionalEntity = additional;
-    const result = await this.additionalEntityRepository.insert(additionalEntity);
-    return result.generatedMaps[0] as Additional;
+    const result = await this.additionalEntityRepository.save(additionalEntity);
+    return result;
   }
 
   async update(id: number, additional: AdditionalModel): Promise<void> {

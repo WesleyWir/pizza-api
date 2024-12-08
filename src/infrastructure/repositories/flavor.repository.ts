@@ -10,12 +10,12 @@ export class DatabaseFlavorRepository implements FlavorRepository {
   constructor(
     @InjectRepository(Flavor)
     private readonly flavorEntityRepository: Repository<Flavor>,
-  ) {}
+  ) { }
 
   async create(flavor: FlavorModel): Promise<FlavorModel> {
     const flavorEntity = flavor;
-    const result = await this.flavorEntityRepository.insert(flavorEntity);
-    return result.generatedMaps[0] as Flavor;
+    const result = await this.flavorEntityRepository.save(flavorEntity);
+    return result;
   }
 
   async update(id: number, flavor: FlavorModel): Promise<void> {
