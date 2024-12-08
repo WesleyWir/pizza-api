@@ -11,15 +11,17 @@ export class ResetService {
     constructor(@InjectConnection() private readonly connection: Connection) { }
 
     async resetDatabase() {
-        const tables = ['sizes', 'additionals', 'flavors', 'orders'];
+        const tables = ['pizza_additionals', 'pizzas', 'sizes', 'additionals', 'flavors', 'orders'];
 
         try {
+            await this.connection.query('SET FOREIGN_KEY_CHECKS = 0;');
             for (const table of tables) {
                 await this.connection.query(`TRUNCATE TABLE ${table};`);
                 await this.connection.query(`ALTER TABLE ${table} AUTO_INCREMENT = 1;`);
             }
 
             await execPromise('npm run seed');
+            // TODO: use logger servicec instead
             console.log('Database reset and seed successful.');
         } catch (error) {
             console.error('Error resetting the database:', error);
