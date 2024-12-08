@@ -47,8 +47,8 @@ export class FlavorController {
   @Put(':id')
   @ApiResponseType(FlavorPresenter, true)
   async updateFlavor(@Body() updateFlavorDto: UpdateFlavorDto) {
-    const { id, name, additionalTime } = updateFlavorDto;
-    await this.updateFlavorUsecaseProxy.getInstance().execute(id, name, additionalTime);
+    const { id, name, additional_time } = updateFlavorDto;
+    await this.updateFlavorUsecaseProxy.getInstance().execute(id, name, additional_time);
     return 'success';
   }
 
@@ -62,8 +62,8 @@ export class FlavorController {
   @Post()
   @ApiResponseType(FlavorPresenter, true)
   async createFlavor(@Body() createFlavorDto: CreateFlavorDto) {
-    const { name, additionalTime } = createFlavorDto;
-    const flavorCreated = await this.createFlavorUsecaseProxy.getInstance().execute(name, additionalTime);
+    const { name, additional_time } = createFlavorDto;
+    const flavorCreated = await this.createFlavorUsecaseProxy.getInstance().execute(name, additional_time);
     return new FlavorPresenter(flavorCreated);
   }
 }

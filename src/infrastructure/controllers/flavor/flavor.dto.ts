@@ -26,7 +26,7 @@ export class UpdateFlavorDto {
         description: 'The additional time (in minutes) required for this flavor.',
     })
     @IsNotEmpty()
-    readonly additionalTime: number;
+    readonly additional_time: number;
 }
 
 export class CreateFlavorDto {
@@ -45,5 +45,5 @@ export class CreateFlavorDto {
         description: 'The additional time (in minutes) required for this flavor.',
     })
     @IsNotEmpty()
-    readonly additionalTime: number;
+    readonly additional_time: number;
 }

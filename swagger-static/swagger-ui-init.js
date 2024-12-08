@@ -995,7 +995,7 @@ window.onload = function() {
               "example": "Margherita",
               "description": "The name of the flavor."
             },
-            "additionalTime": {
+            "additional_time": {
               "type": "number",
               "example": 5,
               "description": "The additional time (in minutes) required for this flavor."
@@ -1004,7 +1004,7 @@ window.onload = function() {
           "required": [
             "id",
             "name",
-            "additionalTime"
+            "additional_time"
           ]
         },
         "CreateFlavorDto": {
@@ -1015,7 +1015,7 @@ window.onload = function() {
               "example": "Pepperoni",
               "description": "The name of the flavor."
             },
-            "additionalTime": {
+            "additional_time": {
               "type": "number",
               "example": 7,
               "description": "The additional time (in minutes) required for this flavor."
@@ -1023,7 +1023,7 @@ window.onload = function() {
           },
           "required": [
             "name",
-            "additionalTime"
+            "additional_time"
           ]
         },
         "AdditionalPresenter": {
