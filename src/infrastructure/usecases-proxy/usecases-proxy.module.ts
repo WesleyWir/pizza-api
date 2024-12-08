@@ -29,7 +29,7 @@ import { DatabasePizzaRepository } from '../repositories/pizza.repository';
 import { getOrderUseCases } from '../../usecases/order/getOrder.usecases';
 import { createPizzaUseCases } from '../../usecases/pizza/createPizza.usecases';
 import { DataSource } from 'typeorm';
-import { ResetDatabaseUseCases } from '@/usecases/reset/resetDatabase.usecases';
+import { ResetDatabaseUseCases } from '../../usecases/reset/resetDatabase.usecases';
 
 @Module({
     imports: [LoggerModule, RepositoriesModule, ExceptionsModule],

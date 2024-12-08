@@ -1,8 +1,8 @@
-import { UsecasesProxyModule } from "@/infrastructure/usecases-proxy/usecases-proxy.module";
+import { UsecasesProxyModule } from "../../../infrastructure/usecases-proxy/usecases-proxy.module";
 import { Controller, Inject, Post } from "@nestjs/common";
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ResetDatabaseUseCases } from "@/usecases/reset/resetDatabase.usecases";
-import { UseCaseProxy } from "@/infrastructure/usecases-proxy/usecases-proxy";
+import { ResetDatabaseUseCases } from "../../../usecases/reset/resetDatabase.usecases";
+import { UseCaseProxy } from "../../../infrastructure/usecases-proxy/usecases-proxy";
 
 @Controller('reset')
 @ApiTags('reset')

@@ -8,8 +8,8 @@ import { storeOrderUseCases } from "../../../usecases/order/storeOrder.usecases"
 import { getOrderUseCases } from "../../../usecases/order/getOrder.usecases";
 import { deleteOrderUseCases } from "../../../usecases/order/deleteOrder.usecases";
 import { StoreOrderDto } from "./order.dto";
-import { createPizzaUseCases } from "@/usecases/pizza/createPizza.usecases";
-import { PizzaModel } from "@/domain/models/pizza";
+import { createPizzaUseCases } from "../../../usecases/pizza/createPizza.usecases";
+import { PizzaModel } from "../../../domain/models/pizza";
 
 @Controller('orders')
 @ApiTags('orders')
