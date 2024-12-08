@@ -8,16 +8,10 @@ export class SizePresenter {
   name: string;
   @ApiProperty()
   price: number;
-  @ApiProperty()
-  createdAt: Date;
-  @ApiProperty()
-  updatedAt: Date;
 
   constructor(size: SizeModel) {
     this.id = size.id;
     this.name = size.name;
     this.price = size.price;
-    this.createdAt = size.createdAt;
-    this.updatedAt = size.updatedAt;
   }
 }

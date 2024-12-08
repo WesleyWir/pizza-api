@@ -14,6 +14,7 @@ export class PizzaModel {
     additionals?: Additional[];
     additional_ids?: number[];
     price: number;
+    preparation_time?: number;
     preparationTime: number;
     createdAt?: Date;
     updatedAt?: Date;

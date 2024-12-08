@@ -8,6 +8,8 @@ import { storeOrderUseCases } from "../../../usecases/order/storeOrder.usecases"
 import { getOrderUseCases } from "../../../usecases/order/getOrder.usecases";
 import { deleteOrderUseCases } from "../../../usecases/order/deleteOrder.usecases";
 import { StoreOrderDto } from "./order.dto";
+import { createPizzaUseCases } from "@/usecases/pizza/createPizza.usecases";
+import { PizzaModel } from "@/domain/models/pizza";
 
 @Controller('orders')
 @ApiTags('orders')
@@ -16,6 +18,8 @@ import { StoreOrderDto } from "./order.dto";
 export class OrderController {
 
     constructor(
+        @Inject(UsecasesProxyModule.CREATE_PIZZA_USECASES_PROXY)
+        private readonly createPizzaUsecasesProxy: UseCaseProxy<createPizzaUseCases>,
         @Inject(UsecasesProxyModule.STORE_ORDER_USECASES_PROXY)
         private readonly storeOrderUsecaseProxy: UseCaseProxy<storeOrderUseCases>,
         @Inject(UsecasesProxyModule.GET_ORDER_USECASES_PROXY)
@@ -27,7 +31,13 @@ export class OrderController {
     @Post()
     @ApiResponseType(OrderPresenter, true)
     async storeOrder(@Body() storeOrderDto: StoreOrderDto) {
-        const { observation, pizzas } = storeOrderDto;
+        const { observation } = storeOrderDto;
+        const pizzasPayload = storeOrderDto.pizzas;
+        let pizzas: PizzaModel[] = [];
+        for (const item of pizzasPayload) {
+            const createdPizza = await this.createPizzaUsecasesProxy.getInstance().execute(item);
+            pizzas.push(createdPizza);
+        }
         const orderCreated = await this.storeOrderUsecaseProxy.getInstance().execute(observation, pizzas);
         return new OrderPresenter(orderCreated);
     }

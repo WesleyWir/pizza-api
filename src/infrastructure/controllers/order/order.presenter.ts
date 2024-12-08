@@ -1,30 +1,30 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { OrderModel } from '../../../domain/models/order';
-import { PizzaModel } from '../../../domain/models/pizza';
+import { PizzaPresenter } from './pizza.presenter';
 
 export class OrderPresenter {
   @ApiProperty()
   id: string;
   @ApiProperty()
-  pizzas: PizzaModel[];
+  pizzas: PizzaPresenter[];
   @ApiProperty()
   observation: string;
   @ApiProperty()
-  totalPreparationTime: number;
+  total_preparation_time: number;
   @ApiProperty()
-  totalPrice: number;
+  total_price: number;
   @ApiProperty()
-  createdAt: Date;
+  created_at: Date;
   @ApiProperty()
-  updatedAt: Date;
+  updated_at: Date;
 
   constructor(order: OrderModel) {
     this.id = order.id;
-    this.pizzas = order.pizzas;
+    this.pizzas = order.pizzas.map((pizza) => new PizzaPresenter(pizza));
     this.observation = order.observation;
-    this.totalPreparationTime = order.totalPreparationTime;
-    this.totalPrice = order.totalPrice;
-    this.createdAt = order.createdAt;
-    this.updatedAt = order.updatedAt;
+    this.total_preparation_time = order.totalPreparationTime;
+    this.total_price = order.totalPrice;
+    this.created_at = order.createdAt;
+    this.updated_at = order.updatedAt;
   }
 }

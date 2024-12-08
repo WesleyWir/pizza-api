@@ -24,15 +24,15 @@ export class MenuController {
     ) { }
 
     @Get()
-    @ApiResponseType(MenuPresenter, true)
+    @ApiResponseType(MenuPresenter, false)
     async getMenus() {
         const flavors = await this.getAllFlavorUsecaseProxy.getInstance().execute();
         const additionals = await this.getAllAdditionalUsecaseProxy.getInstance().execute();
         const sizes = await this.getAllSizeUsecaseProxy.getInstance().execute();
-        return {
+        return new MenuPresenter({
             flavors,
             sizes,
             additionals,
-        };
+        });
     }
 }

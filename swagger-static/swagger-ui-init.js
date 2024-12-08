@@ -11,7 +11,7 @@ window.onload = function() {
   "swaggerDoc": {
     "openapi": "3.0.0",
     "paths": {
-      "/api/sizes/{id} ": {
+      "/api/sizes/{id}": {
         "get": {
           "operationId": "SizeController_getSize",
           "parameters": [
@@ -42,6 +42,99 @@ window.onload = function() {
                           "isArray": {
                             "type": "boolean",
                             "default": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "sizes"
+          ]
+        },
+        "put": {
+          "operationId": "SizeController_updateSize",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateSizeDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/SizePresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "sizes"
+          ]
+        },
+        "delete": {
+          "operationId": "SizeController_deleteSize",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/SizePresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
                           }
                         }
                       }
@@ -110,101 +203,6 @@ window.onload = function() {
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/SizePresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "sizes"
-          ]
-        }
-      },
-      "/api/sizes/{id}": {
-        "put": {
-          "operationId": "SizeController_updateSize",
-          "parameters": [],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateSizeDto"
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/SizePresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "sizes"
-          ]
-        },
-        "delete": {
-          "operationId": "SizeController_deleteSize",
-          "parameters": [
-            {
-              "name": "id",
-              "required": true,
-              "in": "query",
-              "schema": {
-                "type": "number"
-              }
-            }
-          ],
           "responses": {
             "200": {
               "description": "",
@@ -719,7 +717,7 @@ window.onload = function() {
                           },
                           "isArray": {
                             "type": "boolean",
-                            "default": true
+                            "default": false
                           }
                         }
                       }
@@ -911,22 +909,12 @@ window.onload = function() {
             },
             "price": {
               "type": "number"
-            },
-            "createdAt": {
-              "format": "date-time",
-              "type": "string"
-            },
-            "updatedAt": {
-              "format": "date-time",
-              "type": "string"
             }
           },
           "required": [
             "id",
             "name",
-            "price",
-            "createdAt",
-            "updatedAt"
+            "price"
           ]
         },
         "UpdateSizeDto": {
@@ -972,24 +960,14 @@ window.onload = function() {
             "name": {
               "type": "string"
             },
-            "additionalTime": {
+            "additional_time": {
               "type": "number"
-            },
-            "createdAt": {
-              "format": "date-time",
-              "type": "string"
-            },
-            "updatedAt": {
-              "format": "date-time",
-              "type": "string"
             }
           },
           "required": [
             "id",
             "name",
-            "additionalTime",
-            "createdAt",
-            "updatedAt"
+            "additional_time"
           ]
         },
         "UpdateFlavorDto": {
@@ -1035,28 +1013,18 @@ window.onload = function() {
             "name": {
               "type": "string"
             },
-            "additionalTime": {
+            "additional_time": {
               "type": "number"
             },
-            "additionalPrice": {
+            "additional_price": {
               "type": "number"
-            },
-            "createdAt": {
-              "format": "date-time",
-              "type": "string"
-            },
-            "updatedAt": {
-              "format": "date-time",
-              "type": "string"
             }
           },
           "required": [
             "id",
             "name",
-            "additionalTime",
-            "additionalPrice",
-            "createdAt",
-            "updatedAt"
+            "additional_time",
+            "additional_price"
           ]
         },
         "UpdateAdditionalDto": {
@@ -1140,17 +1108,17 @@ window.onload = function() {
             "observation": {
               "type": "string"
             },
-            "totalPreparationTime": {
+            "total_preparation_time": {
               "type": "number"
             },
-            "totalPrice": {
+            "total_price": {
               "type": "number"
             },
-            "createdAt": {
+            "created_at": {
               "format": "date-time",
               "type": "string"
             },
-            "updatedAt": {
+            "updated_at": {
               "format": "date-time",
               "type": "string"
             }
@@ -1159,10 +1127,10 @@ window.onload = function() {
             "id",
             "pizzas",
             "observation",
-            "totalPreparationTime",
-            "totalPrice",
-            "createdAt",
-            "updatedAt"
+            "total_preparation_time",
+            "total_price",
+            "created_at",
+            "updated_at"
           ]
         },
         "StoreOrderDto": {

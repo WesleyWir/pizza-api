@@ -7,20 +7,14 @@ export class AdditionalPresenter {
   @ApiProperty()
   name: string;
   @ApiProperty()
-  additionalTime: number;
+  additional_time: number;
   @ApiProperty()
-  additionalPrice: number;
-  @ApiProperty()
-  createdAt: Date;
-  @ApiProperty()
-  updatedAt: Date;
+  additional_price: number;
 
   constructor(additional: AdditionalModel) {
     this.id = additional.id;
     this.name = additional.name;
-    this.additionalTime = additional.additionalTime;
-    this.additionalPrice = additional.additionalPrice;
-    this.createdAt = additional.createdAt;
-    this.updatedAt = additional.updatedAt;
+    this.additional_time = additional.additionalTime;
+    this.additional_price = additional.additionalPrice;
   }
 }

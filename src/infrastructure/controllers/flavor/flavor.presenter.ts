@@ -7,17 +7,11 @@ export class FlavorPresenter {
   @ApiProperty()
   name: string;
   @ApiProperty()
-  additionalTime: number;
-  @ApiProperty()
-  createdAt: Date;
-  @ApiProperty()
-  updatedAt: Date;
+  additional_time: number;
 
   constructor(flavor: FlavorModel) {
     this.id = flavor.id;
     this.name = flavor.name;
-    this.additionalTime = flavor.additionalTime;
-    this.createdAt = flavor.createdAt;
-    this.updatedAt = flavor.updatedAt;
+    this.additional_time = flavor.additionalTime;
   }
 }

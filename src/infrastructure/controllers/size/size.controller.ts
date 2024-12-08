@@ -30,7 +30,7 @@ export class SizeController {
     private readonly createSizeUsecaseProxy: UseCaseProxy<createSizeUseCases>,
   ) {}
 
-  @Get(':id ')
+  @Get(':id')
   @ApiResponseType(SizePresenter, false)
   async getSize(@Query('id', ParseIntPipe) id: number) {
     const size = await this.getSizeUsecaseProxy.getInstance().execute(id);
