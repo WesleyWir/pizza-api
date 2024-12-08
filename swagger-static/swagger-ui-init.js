@@ -880,8 +880,8 @@ window.onload = function() {
       }
     },
     "info": {
-      "title": "Clean Architecture Pizza Api",
-      "description": "Pizza Api",
+      "title": "Pizza Api",
+      "description": "Documentation of Pizzaria Api implemented with nestjs, using clean architecture concepts to Viasoft selective test.",
       "version": "1",
       "contact": {}
     },

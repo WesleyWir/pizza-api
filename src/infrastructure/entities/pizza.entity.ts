@@ -27,8 +27,8 @@ export class Pizza {
   @ManyToMany(() => Additional, (additional) => additional.pizzas)
   @JoinTable({
     name: 'pizza_additionals',
-    joinColumns: [{ name: 'pizza_id' }], // Referência à entidade atual (Pizza)
-    inverseJoinColumns: [{ name: 'additional_id' }], // Referência à entidade relacionada (Additional)
+    joinColumns: [{ name: 'pizza_id' }],
+    inverseJoinColumns: [{ name: 'additional_id' }],
   })
   additionals: Additional[] | null;
 

@@ -8,7 +8,7 @@ describe('EnvironmentConfigService', () => {
   beforeEach(() => {
     mockConfigService = {
       get: jest.fn(),
-    } as unknown as jest.Mocked<ConfigService>; // Explicitly type the mock as a Jest mock
+    } as unknown as jest.Mocked<ConfigService>;
 
     environmentConfigService = new EnvironmentConfigService(mockConfigService);
   });

@@ -16,7 +16,7 @@ export class DatabasePizzaRepository implements PizzaRepository {
         return await this.pizzaEntityRepository.save(pizza);
     }
 
-    async findById(id: number): Promise<PizzaModel> {
-        return await this.pizzaEntityRepository.findOneOrFail({ where: { id } });
+    async findById(id: number, relations: string[]): Promise<PizzaModel> {
+        return await this.pizzaEntityRepository.findOneOrFail({ where: { id }, relations });
     }
 }

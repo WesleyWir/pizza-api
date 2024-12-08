@@ -4,7 +4,7 @@ import { OrderModel } from "./order";
 import { SizeModel } from "./size";
 
 export class PizzaModel {
-    id: number;
+    id?: number;
     orderId?: string;
     size_id?: number;
     flavor_id?: number;

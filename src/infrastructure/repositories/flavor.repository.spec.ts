@@ -38,16 +38,17 @@ describe('DatabaseFlavorRepository', () => {
 
     it('should create a flavor', async () => {
         const mockFlavor = new FlavorModel();
+        const newDate = new Date();
         mockFlavor.id = 1;
         mockFlavor.name = 'Vanilla';
         mockFlavor.additionalTime = 5;
-        mockFlavor.createdAt = new Date();
+        mockFlavor.createdAt = newDate;
 
         const flavorEntity = new Flavor();
         flavorEntity.id = 1;
         flavorEntity.name = 'Vanilla';
         flavorEntity.additionalTime = 5;
-        flavorEntity.createdAt = new Date();
+        flavorEntity.createdAt = newDate;
 
         const insertResult: InsertResult = {
             generatedMaps: [flavorEntity],

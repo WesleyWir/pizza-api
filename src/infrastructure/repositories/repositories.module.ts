@@ -11,15 +11,22 @@ import { DatabaseOrderRepository } from './order.repository';
 import { Order } from '../entities/order.entity';
 import { DatabasePizzaRepository } from './pizza.repository';
 import { Pizza } from '../entities/pizza.entity';
+import { ExceptionsModule } from '../exceptions/exceptions.module';
+import { ExceptionsService } from '../exceptions/exceptions.service';
 
 @Module({
-    imports: [TypeOrmConfigModule, TypeOrmModule.forFeature([Size, Flavor, Additional, Order, Pizza])],
+    imports: [
+        TypeOrmConfigModule, 
+        TypeOrmModule.forFeature([Size, Flavor, Additional, Order, Pizza]),
+        ExceptionsModule
+    ],
     providers: [
         DatabaseSizeRepository,
         DatabaseFlavorRepository,
         DatabaseAdditionalRepository,
         DatabaseOrderRepository,
-        DatabasePizzaRepository
+        DatabasePizzaRepository,
+        ExceptionsService
     ],
     exports: [
         DatabaseSizeRepository,

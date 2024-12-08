@@ -4,7 +4,6 @@ import { UseCaseProxy } from '../../usecases-proxy/usecases-proxy';
 import { SizePresenter } from './size.presenter';
 import { UsecasesProxyModule } from '../../../infrastructure/usecases-proxy/usecases-proxy.module';
 
-// Mock dependencies
 const mockGetSizeUseCase = { execute: jest.fn() };
 const mockGetSizesUseCase = { execute: jest.fn() };
 const mockUpdateSizeUseCase = { execute: jest.fn() };

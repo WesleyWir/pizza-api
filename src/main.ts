@@ -12,14 +12,14 @@ import { createWriteStream } from 'fs';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix(globalPrefix);
   app.useGlobalFilters(new AllExceptionFilter(new LoggerService()));
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalInterceptors(new LoggingInterceptor(new LoggerService()));
   app.useGlobalInterceptors(new ResponseInterceptor());
   const config = new DocumentBuilder()
-    .setTitle('Clean Architecture Pizza Api')
-    .setDescription('Pizza Api')
+    .setTitle('Pizza Api')
+    .setDescription('Documentation of Pizzaria Api implemented with nestjs, using clean architecture concepts to Viasoft selective test.')
     .setVersion('1')
     .build();
   const document = SwaggerModule.createDocument(app, config, {

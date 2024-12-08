@@ -3,9 +3,9 @@ import { PizzaModel } from "./pizza";
 export class OrderModel {
     id: string;
     observation: string;
-    totalPreparationTime: number;
-    totalPrice: number;
+    totalPreparationTime?: number;
+    totalPrice?: number;
     pizzas?: PizzaModel[];
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
