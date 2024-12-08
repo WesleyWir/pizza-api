@@ -1,6 +1,8 @@
-import { ResetService } from "../../../infrastructure/services/reset.service";
+import { UsecasesProxyModule } from "@/infrastructure/usecases-proxy/usecases-proxy.module";
 import { Controller, Inject, Post } from "@nestjs/common";
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ResetDatabaseUseCases } from "@/usecases/reset/resetDatabase.usecases";
+import { UseCaseProxy } from "@/infrastructure/usecases-proxy/usecases-proxy";
 
 @Controller('reset')
 @ApiTags('reset')
@@ -8,12 +10,12 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 export class ResetController {
 
     constructor(
-        @Inject(ResetService)
-        private readonly resetService: ResetService,
+        @Inject(UsecasesProxyModule.RESET_DATABASE_USECASES_PROXY)
+        private readonly resetDatabaseUsecaseProxy: UseCaseProxy<ResetDatabaseUseCases>,
     ) { }
 
     @Post('/database')
     async resetDatabase() {
-        return this.resetService.resetDatabase();
+        return this.resetDatabaseUsecaseProxy.getInstance().execute();
     }
 }

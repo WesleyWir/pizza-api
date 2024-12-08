@@ -28,6 +28,8 @@ import { storeOrderUseCases } from '../../usecases/order/storeOrder.usecases';
 import { DatabasePizzaRepository } from '../repositories/pizza.repository';
 import { getOrderUseCases } from '../../usecases/order/getOrder.usecases';
 import { createPizzaUseCases } from '../../usecases/pizza/createPizza.usecases';
+import { DataSource } from 'typeorm';
+import { ResetDatabaseUseCases } from '@/usecases/reset/resetDatabase.usecases';
 
 @Module({
     imports: [LoggerModule, RepositoriesModule, ExceptionsModule],
@@ -56,6 +58,8 @@ export class UsecasesProxyModule {
     static DELETE_ORDER_USECASES_PROXY = 'deleteOrderUsecasesProxy';
 
     static CREATE_PIZZA_USECASES_PROXY = 'createPizzaUsecasesProxy';
+
+    static RESET_DATABASE_USECASES_PROXY = 'resetDatabaseUsecasesProxy';
 
     static register(): DynamicModule {
         return {
@@ -195,6 +199,12 @@ export class UsecasesProxyModule {
                             additionalRepository,
                         )),
                 },
+                {
+                    inject: [LoggerService, DataSource],
+                    provide: UsecasesProxyModule.RESET_DATABASE_USECASES_PROXY,
+                    useFactory: (logger: LoggerService, dataSource: DataSource) =>
+                        new UseCaseProxy(new ResetDatabaseUseCases(logger, dataSource)),
+                },
             ],
             exports: [
                 UsecasesProxyModule.GET_SIZE_USECASES_PROXY,
@@ -215,7 +225,8 @@ export class UsecasesProxyModule {
                 UsecasesProxyModule.STORE_ORDER_USECASES_PROXY,
                 UsecasesProxyModule.GET_ORDER_USECASES_PROXY,
                 UsecasesProxyModule.DELETE_ORDER_USECASES_PROXY,
-                UsecasesProxyModule.CREATE_PIZZA_USECASES_PROXY
+                UsecasesProxyModule.CREATE_PIZZA_USECASES_PROXY,
+                UsecasesProxyModule.RESET_DATABASE_USECASES_PROXY
             ],
         };
     }
