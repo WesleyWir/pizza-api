@@ -7,7 +7,7 @@ import { UseCaseProxy } from "../../../infrastructure/usecases-proxy/usecases-pr
 import { storeOrderUseCases } from "../../../usecases/order/storeOrder.usecases";
 import { getOrderUseCases } from "../../../usecases/order/getOrder.usecases";
 import { deleteOrderUseCases } from "../../../usecases/order/deleteOrder.usecases";
-import { StoreOrderDto } from "./order.dto";
+import { CreatePizzaDto, StoreOrderDto } from "./order.dto";
 import { createPizzaUseCases } from "../../../usecases/pizza/createPizza.usecases";
 import { PizzaModel } from "../../../domain/models/pizza";
 
@@ -35,7 +35,11 @@ export class OrderController {
         const pizzasPayload = storeOrderDto.pizzas;
         let pizzas: PizzaModel[] = [];
         for (const item of pizzasPayload) {
-            const createdPizza = await this.createPizzaUsecasesProxy.getInstance().execute(item);
+            let pizza = new PizzaModel();
+            pizza.sizeId = item.size_id;
+            pizza.flavorId = item.flavor_id;
+            pizza.additional_ids = item.additional_ids;           
+            const createdPizza = await this.createPizzaUsecasesProxy.getInstance().execute(pizza);
             pizzas.push(createdPizza);
         }
         const orderCreated = await this.storeOrderUsecaseProxy.getInstance().execute(observation, pizzas);

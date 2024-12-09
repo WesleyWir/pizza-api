@@ -17,18 +17,19 @@ export class createPizzaUseCases {
   async execute(pizza: PizzaModel): Promise<PizzaModel> {
     const newPizza = new PizzaModel();
 
-    const size = await this.sizeRepository.findById(pizza.size_id);
-    const flavor = await this.flavorRepository.findById(pizza.flavor_id);
+    const size = await this.sizeRepository.findById(pizza.sizeId);
+    const flavor = await this.flavorRepository.findById(pizza.flavorId);
 
     let price = size.price;
     let preparationTime = size.preparationTime;
-    
+
     preparationTime += flavor.additionalTime;
     newPizza.size = size;
     newPizza.flavor = flavor;
 
     let additionals = [];
-    for (const additionalId of pizza.additional_ids) {
+    const orderedAdditionals = Array.isArray(pizza.additional_ids) ? pizza.additional_ids : [];
+    for (const additionalId of orderedAdditionals) {
       const additional = await this.additionalRepository.findById(additionalId);
       price += additional.additionalPrice;
       preparationTime += additional.additionalTime;

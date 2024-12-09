@@ -1,6 +1,34 @@
 import { PizzaModel } from '../../../domain/models/pizza';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+
+export class CreatePizzaDto {
+  @ApiProperty({
+    required: true,
+    example: 1,
+    description: 'The ID of the pizza size.',
+  })
+  @IsInt()
+  size_id: number;
+
+  @ApiProperty({
+    required: true,
+    example: 2,
+    description: 'The ID of the pizza flavor.',
+  })
+  @IsInt()
+  flavor_id: number;
+
+  @ApiProperty({
+    required: false,
+    example: [1, 2, 3],
+    description: 'The list of additional ingredients for the pizza.',
+  })
+  @IsArray()
+  @IsOptional()
+  @IsInt({ each: true })
+  additional_ids?: number[];
+}
 
 export class StoreOrderDto {
   @ApiProperty({
@@ -23,5 +51,5 @@ export class StoreOrderDto {
     description: 'The list of pizzas included in the order.',
   })
   @IsNotEmpty()
-  readonly pizzas: PizzaModel[];
+  readonly pizzas: CreatePizzaDto[];
 }

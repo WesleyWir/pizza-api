@@ -6,16 +6,16 @@ import { SizeModel } from "./size";
 export class PizzaModel {
     id?: number;
     orderId?: string;
-    size_id?: number;
-    flavor_id?: number;
+    sizeId: number;
+    flavorId: number;
     order?: OrderModel;
     size?: SizeModel;
     flavor?: FlavorModel;
     additionals?: Additional[];
     additional_ids?: number[];
-    price: number;
+    price?: number;
     preparation_time?: number;
-    preparationTime: number;
+    preparationTime?: number;
     createdAt?: Date;
     updatedAt?: Date;
 }

@@ -20,9 +20,15 @@ export class Pizza {
   @JoinColumn({ name: 'size_id' })
   size: Size;
 
+  @Column({ name: 'size_id', nullable: false })
+  sizeId: number;
+
   @ManyToOne(() => Flavor, (flavor) => flavor.pizzas)
   @JoinColumn({ name: 'flavor_id' })
   flavor: Flavor;
+
+  @Column({ name: 'flavor_id', nullable: false })
+  flavorId: number;
 
   @ManyToMany(() => Additional, (additional) => additional.pizzas)
   @JoinTable({

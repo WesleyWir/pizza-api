@@ -15,7 +15,8 @@ export class ResetController {
     ) { }
 
     @Post('/database')
-    async resetDatabase() {
-        return this.resetDatabaseUsecaseProxy.getInstance().execute();
+    async resetDatabase(): Promise<string> {
+        this.resetDatabaseUsecaseProxy.getInstance().execute();
+        return 'success';
     }
 }
