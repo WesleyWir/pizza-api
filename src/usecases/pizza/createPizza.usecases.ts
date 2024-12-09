@@ -18,8 +18,9 @@ export class createPizzaUseCases {
     const newPizza = new PizzaModel();
 
     const size = await this.sizeRepository.findById(pizza.sizeId);
+    if (!size) throw new Error(`Size not found`);
     const flavor = await this.flavorRepository.findById(pizza.flavorId);
-
+    if (!flavor) throw new Error(`Flavor not found`);
     let price = size.price;
     let preparationTime = size.preparationTime;
 
@@ -31,6 +32,7 @@ export class createPizzaUseCases {
     const orderedAdditionals = Array.isArray(pizza.additional_ids) ? pizza.additional_ids : [];
     for (const additionalId of orderedAdditionals) {
       const additional = await this.additionalRepository.findById(additionalId);
+      if (!additional) throw new Error(`Additional not found`);
       price += additional.additionalPrice;
       preparationTime += additional.additionalTime;
       additionals.push(additional);

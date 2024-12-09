@@ -3,6 +3,6 @@ export class AdditionalModel {
     name: string;
     additionalPrice: number;
     additionalTime: number;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
 }

@@ -4,12 +4,13 @@ import { Repository } from 'typeorm';
 import { SizeModel } from '../../domain/models/size';
 import { SizeRepository } from '../../domain/repositories/SizeRepository.interface';
 import { Size } from '../entities/size.entity';
+import { ExceptionsService } from '../exceptions/exceptions.service';
 
 @Injectable()
 export class DatabaseSizeRepository implements SizeRepository {
   constructor(
     @InjectRepository(Size)
-    private readonly sizeEntityRepository: Repository<Size>,
+    private readonly sizeEntityRepository: Repository<Size>
   ) { }
 
   async create(size: SizeModel): Promise<SizeModel> {
@@ -31,8 +32,12 @@ export class DatabaseSizeRepository implements SizeRepository {
     return sizesEntity.map((sizeEntity) => sizeEntity);
   }
   async findById(id: number): Promise<SizeModel> {
-    const sizeEntity = await this.sizeEntityRepository.findOneOrFail({ where: { id } });
-    return sizeEntity;
+    try {
+      const sizeEntity = await this.sizeEntityRepository.findOneOrFail({ where: { id } });
+      return sizeEntity;
+    } catch (e) {
+      throw new Error('Failed to get order')
+    }
   }
   async deleteById(id: number): Promise<void> {
     await this.sizeEntityRepository.delete({ id: id });

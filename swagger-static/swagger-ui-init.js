@@ -18,7 +18,7 @@ window.onload = function() {
             {
               "name": "id",
               "required": true,
-              "in": "query",
+              "in": "path",
               "schema": {
                 "type": "number"
               }
@@ -245,7 +245,7 @@ window.onload = function() {
             {
               "name": "id",
               "required": true,
-              "in": "query",
+              "in": "path",
               "schema": {
                 "type": "number"
               }
@@ -474,7 +474,7 @@ window.onload = function() {
             {
               "name": "id",
               "required": true,
-              "in": "query",
+              "in": "path",
               "schema": {
                 "type": "number"
               }

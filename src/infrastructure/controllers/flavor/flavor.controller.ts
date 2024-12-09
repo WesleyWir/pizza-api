@@ -1,5 +1,5 @@
 
-import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from '../../../infrastructure/usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from '../../../infrastructure/usecases-proxy/usecases-proxy.module';
@@ -32,7 +32,7 @@ export class FlavorController {
 
   @Get(':id ')
   @ApiResponseType(FlavorPresenter, false)
-  async getFlavor(@Query('id', ParseIntPipe) id: number) {
+  async getFlavor(@Param('id', ParseIntPipe) id: number) {
     const flavor = await this.getFlavorUsecaseProxy.getInstance().execute(id);
     return new FlavorPresenter(flavor);
   }

@@ -1,5 +1,5 @@
 
-import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from '../../usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from '../../usecases-proxy/usecases-proxy.module';
@@ -32,7 +32,7 @@ export class SizeController {
 
   @Get(':id')
   @ApiResponseType(SizePresenter, false)
-  async getSize(@Query('id', ParseIntPipe) id: number) {
+  async getSize(@Param('id', ParseIntPipe) id: number) {
     const size = await this.getSizeUsecaseProxy.getInstance().execute(id);
     return new SizePresenter(size);
   }

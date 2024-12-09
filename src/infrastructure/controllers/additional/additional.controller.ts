@@ -1,5 +1,5 @@
 
-import { Body, Controller, Delete, Get, Inject, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, Post, Put, Query } from '@nestjs/common';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UseCaseProxy } from '../../../infrastructure/usecases-proxy/usecases-proxy';
 import { UsecasesProxyModule } from '../../../infrastructure/usecases-proxy/usecases-proxy.module';
@@ -32,7 +32,7 @@ export class AdditionalController {
 
   @Get(':id ')
   @ApiResponseType(AdditionalPresenter, false)
-  async getAdditional(@Query('id', ParseIntPipe) id: number) {
+  async getAdditional(@Param('id', ParseIntPipe) id: number) {
     const additional = await this.getAdditionalUsecaseProxy.getInstance().execute(id);
     return new AdditionalPresenter(additional);
   }
