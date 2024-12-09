@@ -52,9 +52,9 @@ describe('OrderController', () => {
         it('should store an order', async () => {
             const storeOrderDto: StoreOrderDto = {
                 observation: 'Test observation',
-                pizzas: [{ size_id: 1, flavor_id: 1, price: 20, preparationTime: 15 }],
+                pizzas: [{ size_id: 1, flavor_id: 1 }],
             };
-            const createdPizza: PizzaModel = { ...storeOrderDto.pizzas[0], id: 1 };
+            const createdPizza: PizzaModel = { ...storeOrderDto.pizzas[0], id: 1, sizeId: 1, flavorId: 1 };
             const orderCreated = { id: '1', pizzas: [createdPizza], observation: storeOrderDto.observation };
             mockCreatePizzaUseCase.execute.mockResolvedValue(createdPizza);
             mockStoreOrderUseCase.execute.mockResolvedValue(orderCreated);

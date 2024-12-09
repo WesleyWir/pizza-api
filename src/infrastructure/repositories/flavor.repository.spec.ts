@@ -17,6 +17,7 @@ describe('DatabaseFlavorRepository', () => {
             find: jest.fn(),
             findOneOrFail: jest.fn(),
             delete: jest.fn(),
+            save: jest.fn(),
         } as unknown as jest.Mocked<Repository<Flavor>>;
 
         const module: TestingModule = await Test.createTestingModule({
@@ -50,16 +51,10 @@ describe('DatabaseFlavorRepository', () => {
         flavorEntity.additionalTime = 5;
         flavorEntity.createdAt = newDate;
 
-        const insertResult: InsertResult = {
-            generatedMaps: [flavorEntity],
-            raw: [],
-            identifiers: [],
-        };
-
-        mockFlavorRepository.insert.mockResolvedValue(insertResult);
+        mockFlavorRepository.save.mockResolvedValue(flavorEntity);
 
         const result = await repository.create(mockFlavor);
-        expect(mockFlavorRepository.insert).toHaveBeenCalledWith(mockFlavor);
+        expect(mockFlavorRepository.save).toHaveBeenCalledWith(mockFlavor);
         expect(result).toEqual(mockFlavor);
     });
 

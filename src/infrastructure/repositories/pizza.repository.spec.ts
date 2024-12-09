@@ -37,8 +37,8 @@ describe('DatabasePizzaRepository', () => {
         it('should save and return the created pizza with relations', async () => {
             const pizzaData: PizzaModel = {
                 id: 1,
-                flavor_id: 1,
-                size_id: 2,
+                flavorId: 1,
+                sizeId: 2,
                 additional_ids: [1, 2, 3],
                 price: 20,
                 preparationTime: 15,
@@ -58,8 +58,8 @@ describe('DatabasePizzaRepository', () => {
         it('should return the pizza with its relations when found', async () => {
             const pizzaData: PizzaModel = {
                 id: 1,
-                flavor_id: 1,
-                size_id: 2,
+                flavorId: 1,
+                sizeId: 2,
                 additional_ids: [1, 2, 3],
                 price: 20,
                 preparationTime: 15,

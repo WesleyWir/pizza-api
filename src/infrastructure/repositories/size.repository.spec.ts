@@ -17,6 +17,7 @@ describe('DatabaseSizeRepository', () => {
       find: jest.fn(),
       findOneOrFail: jest.fn(),
       delete: jest.fn(),
+      save: jest.fn(),
     } as unknown as jest.Mocked<Repository<Size>>;
 
     const module: TestingModule = await Test.createTestingModule({
@@ -50,16 +51,10 @@ describe('DatabaseSizeRepository', () => {
     sizeEntity.price = 100;
     sizeEntity.createdAt = newDate;
 
-    const insertResult: InsertResult = {
-      generatedMaps: [sizeEntity],
-      raw: [],
-      identifiers: [],
-    };
-
-    mockSizeRepository.insert.mockResolvedValue(insertResult);
+    mockSizeRepository.save.mockResolvedValue(sizeEntity);
 
     const result = await repository.create(mockSize);
-    expect(mockSizeRepository.insert).toHaveBeenCalledWith(mockSize);
+    expect(mockSizeRepository.save).toHaveBeenCalledWith(mockSize);
     expect(result).toEqual(mockSize);
   });
 

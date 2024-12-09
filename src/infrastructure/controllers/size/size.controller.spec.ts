@@ -80,7 +80,7 @@ describe('SizeController', () => {
       const result = await controller.updateSize(updateSizeDto);
 
       expect(result).toBe('success');
-      expect(mockUpdateSizeUseCase.execute).toHaveBeenCalledWith(1, 'Medium', 150);
+      expect(mockUpdateSizeUseCase.execute).toHaveBeenCalledWith(1, 'Medium', 150, 20);
     });
   });
 
@@ -104,7 +104,7 @@ describe('SizeController', () => {
       const result = await controller.createSize(createSizeDto);
 
       expect(result).toEqual(new SizePresenter(mockSize));
-      expect(mockCreateSizeUseCase.execute).toHaveBeenCalledWith('Small', 100);
+      expect(mockCreateSizeUseCase.execute).toHaveBeenCalledWith('Small', 100, 20);
     });
   });
 });
