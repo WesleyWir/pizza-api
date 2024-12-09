@@ -11,11 +11,6 @@ export class PizzaPresenter {
     id: number;
 
     @ApiProperty({
-        example: 'ORD12345',
-    })
-    order_id: string;
-
-    @ApiProperty({
         type: SizePresenter,
         example: {
             id: 1,
@@ -64,7 +59,6 @@ export class PizzaPresenter {
 
     constructor(pizza: PizzaModel) {
         this.id = pizza.id;
-        this.order_id = pizza.orderId;
         this.size = new SizePresenter(pizza.size);
         this.flavor = new FlavorPresenter(pizza.flavor);
         this.additionals = pizza.additionals.map((additional) => new AdditionalPresenter(additional));

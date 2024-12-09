@@ -1241,10 +1241,6 @@ window.onload = function() {
               "type": "number",
               "example": 1
             },
-            "order_id": {
-              "type": "string",
-              "example": "ORD12345"
-            },
             "size": {
               "example": {
                 "id": 1,
@@ -1298,7 +1294,6 @@ window.onload = function() {
           },
           "required": [
             "id",
-            "order_id",
             "size",
             "flavor",
             "additionals",
