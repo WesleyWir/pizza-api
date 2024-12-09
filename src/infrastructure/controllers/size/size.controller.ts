@@ -34,7 +34,7 @@ export class SizeController {
   @ApiResponseType(SizePresenter, false)
   async getSize(@Param('id', ParseIntPipe) id: number) {
     const size = await this.getSizeUsecaseProxy.getInstance().execute(id);
-    return new SizePresenter(size);
+    return new SizePresenter(size, true);
   }
 
   @Get()

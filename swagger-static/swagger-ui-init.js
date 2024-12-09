@@ -238,7 +238,7 @@ window.onload = function() {
           ]
         }
       },
-      "/api/flavors/{id} ": {
+      "/api/flavors/{id}": {
         "get": {
           "operationId": "FlavorController_getFlavor",
           "parameters": [
@@ -269,6 +269,99 @@ window.onload = function() {
                           "isArray": {
                             "type": "boolean",
                             "default": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "flavors"
+          ]
+        },
+        "put": {
+          "operationId": "FlavorController_updateFlavor",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateFlavorDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/FlavorPresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "flavors"
+          ]
+        },
+        "delete": {
+          "operationId": "FlavorController_deleteFlavor",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/FlavorPresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
                           }
                         }
                       }
@@ -372,102 +465,7 @@ window.onload = function() {
           ]
         }
       },
-      "/api/flavors/{id}": {
-        "put": {
-          "operationId": "FlavorController_updateFlavor",
-          "parameters": [],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateFlavorDto"
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/FlavorPresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "flavors"
-          ]
-        },
-        "delete": {
-          "operationId": "FlavorController_deleteFlavor",
-          "parameters": [
-            {
-              "name": "id",
-              "required": true,
-              "in": "query",
-              "schema": {
-                "type": "number"
-              }
-            }
-          ],
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/FlavorPresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "flavors"
-          ]
-        }
-      },
-      "/api/additionals/{id} ": {
+      "/api/additionals/{id}": {
         "get": {
           "operationId": "AdditionalController_getAdditional",
           "parameters": [
@@ -498,6 +496,99 @@ window.onload = function() {
                           "isArray": {
                             "type": "boolean",
                             "default": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "additionals"
+          ]
+        },
+        "put": {
+          "operationId": "AdditionalController_updateAdditional",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateAdditionalDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/AdditionalPresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Internal error"
+            }
+          },
+          "tags": [
+            "additionals"
+          ]
+        },
+        "delete": {
+          "operationId": "AdditionalController_deleteAdditional",
+          "parameters": [
+            {
+              "name": "id",
+              "required": true,
+              "in": "query",
+              "schema": {
+                "type": "number"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/ResponseFormat"
+                      },
+                      {
+                        "properties": {
+                          "data": {
+                            "$ref": "#/components/schemas/AdditionalPresenter"
+                          },
+                          "isArray": {
+                            "type": "boolean",
+                            "default": true
                           }
                         }
                       }
@@ -566,101 +657,6 @@ window.onload = function() {
               }
             }
           },
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/AdditionalPresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "additionals"
-          ]
-        }
-      },
-      "/api/additionals/{id}": {
-        "put": {
-          "operationId": "AdditionalController_updateAdditional",
-          "parameters": [],
-          "requestBody": {
-            "required": true,
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UpdateAdditionalDto"
-                }
-              }
-            }
-          },
-          "responses": {
-            "200": {
-              "description": "",
-              "content": {
-                "application/json": {
-                  "schema": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/ResponseFormat"
-                      },
-                      {
-                        "properties": {
-                          "data": {
-                            "$ref": "#/components/schemas/AdditionalPresenter"
-                          },
-                          "isArray": {
-                            "type": "boolean",
-                            "default": true
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            },
-            "500": {
-              "description": "Internal error"
-            }
-          },
-          "tags": [
-            "additionals"
-          ]
-        },
-        "delete": {
-          "operationId": "AdditionalController_deleteAdditional",
-          "parameters": [
-            {
-              "name": "id",
-              "required": true,
-              "in": "query",
-              "schema": {
-                "type": "number"
-              }
-            }
-          ],
           "responses": {
             "200": {
               "description": "",
@@ -928,13 +924,25 @@ window.onload = function() {
               "type": "number",
               "description": "Preparation time for the size.",
               "example": 10
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Timestamp when the size was created.",
+              "example": "2023-12-09T12:00:00Z"
+            },
+            "updated_at": {
+              "type": "string",
+              "description": "Timestamp when the size was last updated.",
+              "example": "2023-12-10T12:00:00Z"
             }
           },
           "required": [
             "id",
             "name",
             "price",
-            "preparation_time"
+            "preparation_time",
+            "created_at",
+            "updated_at"
           ]
         },
         "UpdateSizeDto": {
@@ -1007,12 +1015,24 @@ window.onload = function() {
             "additional_time": {
               "type": "number",
               "example": 5
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Timestamp when the size was created.",
+              "example": "2023-12-09T12:00:00Z"
+            },
+            "updated_at": {
+              "type": "string",
+              "description": "Timestamp when the size was last updated.",
+              "example": "2023-12-10T12:00:00Z"
             }
           },
           "required": [
             "id",
             "name",
-            "additional_time"
+            "additional_time",
+            "created_at",
+            "updated_at"
           ]
         },
         "UpdateFlavorDto": {
@@ -1075,13 +1095,25 @@ window.onload = function() {
             "additional_price": {
               "type": "number",
               "example": 2.5
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Timestamp when the size was created.",
+              "example": "2023-12-09T12:00:00Z"
+            },
+            "updated_at": {
+              "type": "string",
+              "description": "Timestamp when the size was last updated.",
+              "example": "2023-12-10T12:00:00Z"
             }
           },
           "required": [
             "id",
             "name",
             "additional_time",
-            "additional_price"
+            "additional_price",
+            "created_at",
+            "updated_at"
           ]
         },
         "UpdateAdditionalDto": {

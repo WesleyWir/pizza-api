@@ -30,11 +30,11 @@ export class AdditionalController {
     private readonly createAdditionalUsecaseProxy: UseCaseProxy<createAdditionalUseCases>,
   ) { }
 
-  @Get(':id ')
+  @Get(':id')
   @ApiResponseType(AdditionalPresenter, false)
   async getAdditional(@Param('id', ParseIntPipe) id: number) {
     const additional = await this.getAdditionalUsecaseProxy.getInstance().execute(id);
-    return new AdditionalPresenter(additional);
+    return new AdditionalPresenter(additional, true);
   }
 
   @Get()

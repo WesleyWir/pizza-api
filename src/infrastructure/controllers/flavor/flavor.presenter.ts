@@ -17,9 +17,26 @@ export class FlavorPresenter {
   })
   additional_time: number;
 
-  constructor(flavor: FlavorModel) {
+  @ApiProperty({
+    description: 'Timestamp when the size was created.',
+    example: '2023-12-09T12:00:00Z',
+  })
+  created_at?: string;
+
+  @ApiProperty({
+    description: 'Timestamp when the size was last updated.',
+    example: '2023-12-10T12:00:00Z',
+  })
+  updated_at?: string;
+
+  constructor(flavor: FlavorModel, timestamps = false) {
     this.id = flavor.id;
     this.name = flavor.name;
     this.additional_time = flavor.additionalTime;
+
+    if (timestamps) {
+      this.created_at = flavor.createdAt?.toISOString();
+      this.updated_at = flavor.updatedAt?.toISOString();
+    }
   }
 }

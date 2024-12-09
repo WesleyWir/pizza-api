@@ -22,10 +22,27 @@ export class AdditionalPresenter {
   })
   additional_price: number;
 
-  constructor(additional: AdditionalModel) {
+  @ApiProperty({
+    description: 'Timestamp when the size was created.',
+    example: '2023-12-09T12:00:00Z',
+  })
+  created_at?: string;
+
+  @ApiProperty({
+    description: 'Timestamp when the size was last updated.',
+    example: '2023-12-10T12:00:00Z',
+  })
+  updated_at?: string;
+
+  constructor(additional: AdditionalModel, timestamps = false) {
     this.id = additional.id;
     this.name = additional.name;
     this.additional_time = additional.additionalTime;
     this.additional_price = additional.additionalPrice;
+
+    if (timestamps) {
+      this.created_at = additional.createdAt?.toISOString();
+      this.updated_at = additional.updatedAt?.toISOString();
+    }
   }
 }

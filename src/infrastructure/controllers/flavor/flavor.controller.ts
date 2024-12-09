@@ -28,13 +28,13 @@ export class FlavorController {
     private readonly deleteFlavorUsecaseProxy: UseCaseProxy<deleteFlavorUseCases>,
     @Inject(UsecasesProxyModule.POST_FLAVOR_USECASES_PROXY)
     private readonly createFlavorUsecaseProxy: UseCaseProxy<createFlavorUseCases>,
-  ) {}
+  ) { }
 
-  @Get(':id ')
+  @Get(':id')
   @ApiResponseType(FlavorPresenter, false)
   async getFlavor(@Param('id', ParseIntPipe) id: number) {
     const flavor = await this.getFlavorUsecaseProxy.getInstance().execute(id);
-    return new FlavorPresenter(flavor);
+    return new FlavorPresenter(flavor, true);
   }
 
   @Get()
