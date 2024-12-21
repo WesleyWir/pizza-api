@@ -2,10 +2,6 @@ import { PizzaModel } from '../../domain/models/pizza';
 import { ILogger } from '../../domain/logger/logger.interface';
 import { OrderModel } from '../../domain/models/order';
 import { OrderRepository } from '../../domain/repositories/OrderRepository.interface';
-import { PizzaRepository } from '../../domain/repositories/PizzaRepository.interface';
-import { SizeRepository } from '../../domain/repositories/SizeRepository.interface';
-import { FlavorRepository } from '../../domain/repositories/FlavorRepository.interface';
-import { AdditionalRepository } from '../../domain/repositories/AdditionalRepository.interface';
 
 export class storeOrderUseCases {
     constructor(
@@ -16,7 +12,18 @@ export class storeOrderUseCases {
     async execute(observation: string, pizzas: PizzaModel[]): Promise<OrderModel> {
         const order = new OrderModel();
         order.observation = observation;
-        order.pizzas = pizzas;
+        let totalPreparationTime = 0;
+        let totalPrice = 0;
+        if (pizzas && pizzas.length > 0) {
+            order.pizzas = pizzas.map(pizza => {
+                pizza.order = order;
+                totalPreparationTime += pizza.preparationTime;
+                totalPrice += pizza.price;
+                return pizza;
+            });
+        }
+        order.totalPreparationTime = totalPreparationTime;
+        order.totalPrice = totalPrice;
         const createdOrder = await this.orderRepository.create(order);
         this.logger.log('storeOrderUseCases execute', 'New order has been inserted');
         return createdOrder;
